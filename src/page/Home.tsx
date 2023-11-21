@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <section>
+      <section className='align-element'>
         <Outlet />
       </section>
       <Footer />

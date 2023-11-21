@@ -11,10 +11,13 @@ import {
   SingleProduct,
 } from './page';
 import { Checkout, Landing } from './components';
+import { routes } from './utils/routes';
+
+const { home, products, aboutUs, cart, signIn, signUp, checkout } = routes;
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: home.path,
     element: <Home />,
     errorElement: <ErrorPage />,
     children: [
@@ -23,20 +26,20 @@ const router = createBrowserRouter([
         element: <Landing />,
       },
       {
-        path: 'products',
+        path: products.path,
         element: <Products />,
       },
-      { path: 'products/:id', element: <SingleProduct /> },
+      { path: `${products.path}/:id`, element: <SingleProduct /> },
       {
-        path: 'about-us',
+        path: aboutUs.path,
         element: <AboutUs />,
       },
       {
-        path: 'cart',
+        path: cart.path,
         element: <Cart />,
       },
       {
-        path: 'checkout',
+        path: checkout.path,
         element: (
           <PrivateRoute>
             <Checkout />
@@ -44,11 +47,11 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'sign-in',
+        path: signIn.path,
         element: <SignIn />,
       },
       {
-        path: 'sign-up',
+        path: signUp.path,
         element: <SignUp />,
       },
     ],

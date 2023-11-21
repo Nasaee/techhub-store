@@ -1,9 +1,9 @@
-import { Header } from '../components';
+import Hero from './Hero';
 
 const Landing = () => {
   return (
     <div>
-      <Header />
+      <Hero />
       <h1>Landing</h1>
     </div>
   );
