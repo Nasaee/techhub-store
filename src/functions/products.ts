@@ -1,6 +1,6 @@
 const Airtable = require('airtable-node');
 
-type Product = {
+export type Product = {
   id: string;
   name: string;
   brand: string;
