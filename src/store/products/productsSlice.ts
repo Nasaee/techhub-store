@@ -1,6 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Product } from '../../functions/products';
+export type Product = {
+  id: string;
+  name: string;
+  brand: string;
+  category: string;
+  stock: number;
+  description: string;
+  colors: string;
+  price: string;
+  featured: string;
+  image: object;
+  screen_size: string;
+  cpu: string;
+  display: string;
+  memory: string;
+  os: string;
+  font_camera: string;
+  back_camera: string;
+  battety: string;
+  weight: string;
+  warranty: string;
+};
 
 type ProductsState = {
   isLoading: boolean;
@@ -26,6 +47,8 @@ const productsSlice = createSlice({
     fetchProductsSuccess: (state, action: PayloadAction<Product[]>) => {
       state.isLoading = false;
       state.products = action.payload;
+      state.error = null;
+      console.log(action.payload);
     },
     fetchProductsFailure: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
