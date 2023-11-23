@@ -49,6 +49,10 @@ const productsSlice = createSlice({
       state.products = action.payload;
       state.error = null;
       console.log(action.payload);
+      const filteredProducts: Product[] = action.payload.filter(
+        (product) => product.featured !== ''
+      );
+      state.filteredProducts = filteredProducts;
     },
     fetchProductsFailure: (state, action: PayloadAction<string>) => {
       state.isLoading = false;

@@ -12,6 +12,7 @@ const persistConfig = {
 };
 
 const sagaMiddleware = createSagaMiddleware();
+
 const loggerMiddleware =
   import.meta.env.NODE_ENV !== 'production' && createLogger();
 

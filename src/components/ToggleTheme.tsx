@@ -1,6 +1,14 @@
-const handleTheme = () => {};
+import { useDispatch } from 'react-redux';
+import { toggleTheme } from '../store/user/userSlice';
+import { ChangeEvent } from 'react';
 
 const ToggleTheme = () => {
+  const dispatch = useDispatch();
+  const handleTheme = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.checked);
+    dispatch(toggleTheme(e.target.checked));
+  };
+
   return (
     <label className='swap swap-rotate text-primary xl:ml-3'>
       {/* this hidden checkbox controls the state */}
