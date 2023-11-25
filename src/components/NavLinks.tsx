@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Routes, routes } from '../utils/routes';
 
 const NavLinks = () => {
@@ -14,12 +14,12 @@ const NavLinks = () => {
         ) {
           return (
             <li key={key} className='px-1 py-1'>
-              <Link
+              <NavLink
                 to={route.path}
-                className='text-md xl:text-lg uppercase bold text-primary'
+                className='text-sm xl:text-md uppercase  text-primary'
               >
                 {route.name}
-              </Link>
+              </NavLink>
             </li>
           );
         }

@@ -20,7 +20,8 @@
     "react-router-dom": "^6.19.0",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
-    "redux-saga": "^1.2.3"
+    "redux-saga": "^1.2.3",
+    "reselect": "^4.1.8"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",

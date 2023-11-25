@@ -25,7 +25,7 @@ const ToggleTheme = () => {
 
       {/* moon icon */}
       <svg
-        className='swap-off fill-current icon text-[#1D86F0]'
+        className='swap-off fill-current icon text-secondary'
         xmlns='http://www.w3.org/2000/svg'
         viewBox='0 0 24 24'
       >
