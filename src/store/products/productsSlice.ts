@@ -21,7 +21,7 @@ const productsSlice = createSlice({
       state.products = action.payload;
       state.error = null;
       const featuredProducts: Product[] = action.payload.filter(
-        (product) => product.featured !== ''
+        (product) => product.featured
       );
       state.featuredProducts = featuredProducts;
     },

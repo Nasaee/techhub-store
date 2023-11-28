@@ -1,16 +1,14 @@
 import { useSelector } from 'react-redux';
 
 import Hero from './Hero';
-import { selectFeaturedProducts } from '../store/products/products.selector';
+import FeaturedProducts from './FeaturedProducts';
 
 const Landing = () => {
-  const featuredProducts = useSelector(selectFeaturedProducts);
-
-  console.log(featuredProducts);
   return (
     <div>
       <Hero />
       {/* Featured Products */}
+      <FeaturedProducts />
     </div>
   );
 };
