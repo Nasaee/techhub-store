@@ -1,4 +1,4 @@
-import { CiDeliveryTruck } from 'react-icons/ci';
+import { LiaShippingFastSolid } from 'react-icons/lia';
 
 import { FC } from 'react';
 import { type Product } from '../type';
@@ -58,7 +58,7 @@ const ProductCard: FC<ProductProps> = ({ product }) => {
           <span className='text-3xl'>0</span>%
         </div>
         <div className='flex flex-col justify-center items-center w-10 h-auto py-1 bg-[#F4D03F] rounded-xl '>
-          <CiDeliveryTruck className='icon' />
+          <LiaShippingFastSolid className='icon' />
           <span className='text-xs'>Free</span>
         </div>
       </div>
