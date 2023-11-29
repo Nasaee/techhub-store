@@ -9,4 +9,8 @@
   .icon {
     @apply w-6 h-6 xl:w-7 xl:h-7;
   }
+
+  .flex-center {
+    @apply justify-center items-center;
+  }
 }
