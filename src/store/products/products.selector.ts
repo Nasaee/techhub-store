@@ -7,3 +7,8 @@ export const selectFeaturedProducts = createSelector(
   [selectProductsReducer],
   (products) => products.featuredProducts
 );
+
+export const selectAllProducts = createSelector(
+  [selectProductsReducer],
+  (products) => products.allProducts
+);

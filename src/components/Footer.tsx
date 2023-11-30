@@ -1,6 +1,12 @@
 import FooterCard from './footerCard';
 import { Link } from 'react-router-dom';
 import storeIcon from '../assets/logo.webp';
+
+import { ImFacebook2 } from 'react-icons/im';
+import { FaInstagram } from 'react-icons/fa';
+import { FaLine } from 'react-icons/fa6';
+import { BsTwitterX } from 'react-icons/bs';
+
 const Footer = () => {
   return (
     <footer className='bg-neutral p-10 pt-24'>
@@ -54,6 +60,15 @@ const Footer = () => {
           <a className='link link-hover'>Return policy</a>
           <a className='link link-hover'>Refunds policy</a>
           <a className='link link-hover'>Waranty policy / Claim Notification</a>
+        </nav>
+        <nav className='mb-10 max-w-md'>
+          <header className='footer-title mb-4'>Stay Connected</header>
+          <div className='flex gap-4'>
+            <ImFacebook2 className='icon' />
+            <FaInstagram className='icon' />
+            <FaLine className='icon' />
+            <BsTwitterX className='icon' />
+          </div>
         </nav>
       </div>
     </footer>

@@ -39,7 +39,7 @@ export type Product = {
 export type ProductsState = {
   isLoading: boolean;
   error: string | null;
-  products: Product[];
+  allProducts: Product[];
   filteredProducts: Product[];
   featuredProducts: Product[];
 };

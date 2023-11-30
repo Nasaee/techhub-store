@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import SliderProducts from './SliderProducts';
 
 const Hero = () => {
   return (
@@ -19,7 +20,7 @@ const Hero = () => {
           Shop Now
         </Link>
       </div>
-      <div>products slider</div>
+      <SliderProducts />
     </div>
   );
 };
