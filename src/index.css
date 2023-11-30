@@ -19,4 +19,24 @@ body {
   .flex-center {
     @apply justify-center items-center;
   }
+
+  .activeSlide {
+    @apply opacity-100 translate-x-[0];
+  }
+
+  .nextSlide {
+    @apply translate-x-full opacity-0;
+  }
+
+  .prevSlide {
+    @apply translate-x-[-100%] opacity-0;
+  }
+
+  .next {
+    @apply absolute top-1/2 right-12 translate-y-[-50%] grid place-items-center text-base hover:bg-[rgba(189,195,199,0.3)] p-2 rounded-full transition duration-300;
+  }
+
+  .prev {
+    @apply absolute top-1/2 left-12 translate-y-[-50%] grid place-items-center text-base hover:bg-[rgba(189,195,199,0.3)] p-2 rounded-full transition duration-300;
+  }
 }

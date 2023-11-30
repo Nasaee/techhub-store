@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Routes, routes } from '../utils/routes';
+import { Routes, routes } from '../utils/routes.utils';
 
 const NavLinks = () => {
   return (

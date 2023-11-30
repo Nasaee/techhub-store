@@ -8,7 +8,7 @@ const FeaturedProducts = () => {
   const featuredProducts = useSelector(selectFeaturedProducts);
 
   return (
-    <div className='pt-24'>
+    <div className='mt-16 lg:mt-0'>
       <SectionTitle title='featured products' />
       <ProductsGrid products={featuredProducts} />
     </div>

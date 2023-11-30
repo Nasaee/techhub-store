@@ -3,7 +3,7 @@ import { LiaShippingFastSolid } from 'react-icons/lia';
 import { FC } from 'react';
 import { type Product } from '../type';
 import { Link } from 'react-router-dom';
-import displayPrice from '../utils/displayPrice';
+import displayPrice from '../utils/displayPrice.utils';
 
 type ProductProps = {
   product: Product;

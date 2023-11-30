@@ -3,7 +3,6 @@ const config = {
   currency: 'THB',
 };
 const displayPrice = (price: number, discountPercentage?: number) => {
-  console.log(price, discountPercentage);
   if (!discountPercentage) {
     return new Intl.NumberFormat('en-US', config).format(price);
   }

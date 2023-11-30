@@ -11,7 +11,7 @@ import {
   SingleProduct,
 } from './page';
 import { Checkout, Landing } from './components';
-import { routes } from './utils/routes';
+import { routes } from './utils/routes.utils';
 
 const { home, products, aboutUs, cart, signIn, signUp, checkout } = routes;
 

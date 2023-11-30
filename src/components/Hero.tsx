@@ -3,7 +3,7 @@ import SliderProducts from './SliderProducts';
 
 const Hero = () => {
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-2 gap-24  items-center'>
+    <div className='grid grid-cols-1 lg:grid-cols-2  gap-10 lg:h-[38rem] lg:pb-6'>
       <div>
         <h1 className='max-w-2xl text-4xl font-bold tracking-tight  sm:text-6xl '>
           We are changing the way people shop
