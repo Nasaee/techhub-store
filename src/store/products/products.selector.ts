@@ -12,3 +12,8 @@ export const selectAllProducts = createSelector(
   [selectProductsReducer],
   (products) => products.allProducts
 );
+
+export const selectIsProductsLoading = createSelector(
+  [selectProductsReducer],
+  (products) => products.isLoading
+);

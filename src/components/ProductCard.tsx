@@ -4,11 +4,16 @@ import { FC } from 'react';
 import { type Product } from '../type';
 import { Link } from 'react-router-dom';
 import displayPrice from '../utils/displayPrice.utils';
+import { useSelector } from 'react-redux';
+import { selectIsProductsLoading } from '../store/products/products.selector';
+import CardSkeleton from './CardSkeleton';
 
 type ProductProps = {
   product: Product;
 };
 const ProductCard: FC<ProductProps> = ({ product }) => {
+  const isLoading = useSelector(selectIsProductsLoading);
+
   const {
     id,
     name,
@@ -17,6 +22,10 @@ const ProductCard: FC<ProductProps> = ({ product }) => {
     featured: discountPercentage,
     image,
   } = product;
+
+  if (isLoading) {
+    return <CardSkeleton />;
+  }
 
   return (
     <Link

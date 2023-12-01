@@ -11,7 +11,6 @@ const SliderProducts = () => {
   const allProducts = useSelector(selectAllProducts);
   const [index, setIndex] = useState(0);
 
-  console.log(index);
   const nextSlide = () => {
     setIndex((oldIndex) => {
       let index = oldIndex + 1;
@@ -41,12 +40,12 @@ const SliderProducts = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 4000);
     return () => clearInterval(interval);
   });
 
   return (
-    <div className='relative w-full h-full hidden lg:block'>
+    <div className='relative w-full h-full hidden lg:block  overflow-hidden'>
       {allProducts.map((product: Product, productIndex) => {
         let position: Position = 'nextSlide';
         if (productIndex === index) {
@@ -61,7 +60,7 @@ const SliderProducts = () => {
         return (
           <div
             key={product.id}
-            className={`absolute top-0 left-1/2 translate-x-[-50%] transition ease-linear duration-300 ${position}`}
+            className={`absolute top-0 left-0 w-full flex justify-center transition ease-linear duration-300 overflow-hidden ${position}`}
           >
             <ProductCard product={product} />
           </div>
