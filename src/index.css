@@ -4,13 +4,20 @@ body {
   font-family: 'Kanit', sans-serif;
 }
 
+.about-header {
+  background-image: url('./assets/about-bg.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
   .align-element {
-    @apply mx-auto max-w-screen-2xl px-8;
+    @apply mx-auto max-w-screen-2xl px-8 pb-20;
   }
   .icon {
     @apply w-6 h-6 xl:w-7 xl:h-7;

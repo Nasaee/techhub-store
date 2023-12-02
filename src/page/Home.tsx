@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <section className='align-element py-20 min-h-screen'>
+      <section className='align-element min-h-screen'>
         <Outlet />
       </section>
       <Footer />
