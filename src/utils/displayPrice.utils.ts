@@ -4,7 +4,7 @@ const config = {
 };
 const displayPrice = (price: number, discountPercentage?: number) => {
   if (!discountPercentage) {
-    return new Intl.NumberFormat('en-US', config).format(price);
+    return new Intl.NumberFormat('th-TH', config).format(price);
   }
 
   const discountPice = (price * (100 - discountPercentage)) / 100;

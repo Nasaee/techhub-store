@@ -27,7 +27,7 @@ const AboutUs = () => {
               <img src={historyImg} alt='history image' />
             </figure>
             <div className='card-body'>
-              <h2 className='card-title'>Shoes!</h2>
+              <h2 className='card-title'>Histoty of TechHub</h2>
               <p className='text-justify'>
                 Nulla aliquet porttitor lacus luctus. Viverra maecenas accumsan
                 lacus vel facilisis volutpat. Arcu cursus vitae congue mauris

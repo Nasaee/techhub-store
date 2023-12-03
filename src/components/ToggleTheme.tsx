@@ -12,7 +12,7 @@ const ToggleTheme = () => {
   return (
     <label className='swap swap-rotate text-primary xl:ml-3'>
       {/* this hidden checkbox controls the state */}
-      <input type='checkbox' onChange={handleTheme} />
+      <input type='checkbox' onChange={handleTheme} className='hidden' />
 
       {/* sun icon */}
       <svg

@@ -1,12 +1,11 @@
-import { LiaShippingFastSolid } from 'react-icons/lia';
-
 import { FC } from 'react';
-import { type Product } from '../type';
 import { Link } from 'react-router-dom';
+import { type Product } from '../type';
 import displayPrice from '../utils/displayPrice.utils';
 import { useSelector } from 'react-redux';
 import { selectIsProductsLoading } from '../store/products/products.selector';
 import CardSkeleton from './CardSkeleton';
+import { LiaShippingFastSolid } from 'react-icons/lia';
 
 type ProductProps = {
   product: Product;
@@ -24,7 +23,7 @@ const ProductCard: FC<ProductProps> = ({ product }) => {
   } = product;
 
   if (isLoading) {
-    return <CardSkeleton />;
+    return <CardSkeleton style='vartical' />;
   }
 
   return (
@@ -50,7 +49,7 @@ const ProductCard: FC<ProductProps> = ({ product }) => {
             : description}
         </p>
         <div className='card-actions flex-col justify-start mt-3'>
-          <span className='font-bold text-	info-content'>
+          <span className='font-bold text-xl info-content'>
             {displayPrice(+price[0], +discountPercentage)}
           </span>
 
