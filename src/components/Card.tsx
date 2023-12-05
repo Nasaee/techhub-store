@@ -84,29 +84,35 @@ const Card: FC<CardProps> = ({ product, cardStyle }) => {
       <Link
         to={`/products/${id}`}
         key={id}
-        className='card card-side grid grid-cols-2 h-full overflow-hidden'
+        className='card card-side grid grid-cols-2 h-full overflow-hidden border shadow-md hover:shadow-lg transition duration-300  max-w-[900px]'
       >
-        <figure className='rounded-3xl'>
-          <img src={image.url} alt={name} className='rounded-3xl' />
-        </figure>
-        <div className='card-body'>
-          <h2 className='card-title'>
-            {name}
-            <div className='badge badge-secondary'>NEW</div>
-          </h2>
-          <p>
-            {description.length > 100
-              ? `${description.slice(0, 100)}...`
-              : description}
-          </p>
-
-          {discountPercentage && (
-            <div className='flex justify-end text-red-600 p-[6px] rounded-xl'>
-              <i className='bg-[#F4D03F] px-2 rounded-lg'>{`-${discountPercentage}%`}</i>
+        <figure className='relative'>
+          <img src={image.url} alt={name} className='h-full object-cover' />
+          <div className='absolute top-3 right-[-8px] flex flex-col place-items-start gap-4 text-neutral'>
+            <div className=' flex justify-center items-center w-10 h-10 bg-[#F4D03F] font-bold text-xs tracking-wider rounded-xl'>
+              <span className='text-3xl'>0</span>%
             </div>
-          )}
+            <div className='flex flex-col justify-center items-center w-auto h-auto p-[6px] bg-[#F4D03F] rounded-xl '>
+              <span className='text-xs'>Free</span>
+              <LiaShippingFastSolid className='icon relative' />
+            </div>
+          </div>
+        </figure>
+        {/* CARD BODY */}
+        <div className='flex flex-col justify-between gap-4 p-8'>
+          <div>
+            <h2 className='card-title mb-4'>
+              {name}
+              <div className='badge badge-secondary'>NEW</div>
+            </h2>
+            <p>
+              {description.length > 150
+                ? `${description.slice(0, 150)}...`
+                : description}
+            </p>
+          </div>
 
-          <div className='card-actions flex justify-end items-end gap-3 '>
+          <div className='card-actions flex justify-end items-end gap-3 relative'>
             {discountPercentage && (
               <span>
                 <del>{displayPrice(+price[0])}</del>
@@ -115,16 +121,12 @@ const Card: FC<CardProps> = ({ product, cardStyle }) => {
             <span className='font-bold text-xl info-content'>
               {displayPrice(+price[0], +discountPercentage)}
             </span>
-          </div>
-        </div>
 
-        <div className='absolute top-2 right-[52%] flex flex-col place-items-start gap-4 text-neutral'>
-          <div className=' flex justify-center items-center w-10 h-10 bg-[#F4D03F] font-bold text-xs tracking-wider rounded-xl'>
-            <span className='text-3xl'>0</span>%
-          </div>
-          <div className='flex flex-col justify-center items-center w-auto h-auto p-[6px] bg-[#F4D03F] rounded-xl '>
-            <span className='text-xs'>Free</span>
-            <LiaShippingFastSolid className='icon relative' />
+            {discountPercentage && (
+              <div className=' flex justify-end text-red-600 p-[6px] rounded-xl'>
+                <i className='bg-[#F4D03F] px-2 rounded-lg'>{`-${discountPercentage}%`}</i>
+              </div>
+            )}
           </div>
         </div>
       </Link>

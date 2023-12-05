@@ -33,6 +33,15 @@ const productsSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+
+    sortProducts: (state, action: PayloadAction<string>) => {
+      if (action.payload === 'lowest') {
+        state.filteredProducts.sort((a, b) => a.price[0] - b.price[0]);
+      }
+      if (action.payload === 'highest') {
+        state.filteredProducts.sort((a, b) => b.price[0] - a.price[0]);
+      }
+    },
   },
 });
 
@@ -40,6 +49,7 @@ export const {
   fetchProductsStart,
   fetchProductsSuccess,
   fetchProductsFailure,
+  sortProducts,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

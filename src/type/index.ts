@@ -21,7 +21,7 @@ export type Product = {
   stock: number;
   description: string;
   colors: string;
-  price: string;
+  price: number[];
   featured: string;
   image: object;
   screen_size: string;

@@ -26,16 +26,20 @@ export const selectIsProductsLoading = createSelector(
 export const selectCategories = createSelector(
   [selectProductsReducer],
   (products) =>
-    products.allProducts.map((products) => [...new Set(products.category)])
+    products.allProducts.map((products) => [
+      'all',
+      ...new Set(products.category),
+    ])
 );
 
 export const selectBrands = createSelector(
   [selectProductsReducer],
   (products) =>
-    products.allProducts.map((product) => [...new Set(product.brand)])
+    products.allProducts.map((product) => ['all', ...new Set(product.brand)])
 );
 
 export const selectProcessor = createSelector(
   [selectProductsReducer],
-  (products) => products.allProducts.map((product) => [...new Set(product.cpu)])
+  (products) =>
+    products.allProducts.map((product) => ['all', ...new Set(product.cpu)])
 );

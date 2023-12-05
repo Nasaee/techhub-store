@@ -14,7 +14,7 @@ const Footer = () => {
         <FooterCard
           icon='truck'
           header='Free shipping'
-          description='with minimum over 3,000.-'
+          description='with minimum over 1,500.-'
         />
         <FooterCard
           icon='time'
@@ -64,10 +64,18 @@ const Footer = () => {
         <nav className='mb-10 max-w-md'>
           <header className='footer-title mb-4'>Stay Connected</header>
           <div className='flex gap-4'>
-            <ImFacebook2 className='icon' />
-            <FaInstagram className='icon' />
-            <FaLine className='icon' />
-            <BsTwitterX className='icon' />
+            <a href='#'>
+              <ImFacebook2 className='icon' />
+            </a>
+            <a href='#'>
+              <FaInstagram className='icon' />
+            </a>
+            <a href='#'>
+              <FaLine className='icon' />
+            </a>
+            <a href='#'>
+              <BsTwitterX className='icon' />
+            </a>
           </div>
         </nav>
       </div>
