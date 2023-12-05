@@ -6,7 +6,14 @@ const initialState: ProductsState = {
   error: null,
   allProducts: [],
   filteredProducts: [],
-  featuredProducts: [],
+  filters: {
+    text: '',
+    brand: 'all',
+    category: 'all',
+    color: 'all',
+    minPrice: 0,
+    maxPrice: 0,
+  },
 };
 
 const productsSlice = createSlice({
@@ -20,10 +27,7 @@ const productsSlice = createSlice({
       state.isLoading = false;
       state.allProducts = action.payload;
       state.error = null;
-      const featuredProducts: Product[] = action.payload.filter(
-        (product) => product.featured
-      );
-      state.featuredProducts = featuredProducts;
+      state.filteredProducts = action.payload;
     },
     fetchProductsFailure: (state, action: PayloadAction<string>) => {
       state.isLoading = false;

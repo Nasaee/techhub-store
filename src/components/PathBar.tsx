@@ -13,20 +13,22 @@ type PathbarProps = {
 
 const PathBar = ({ submenu, productName }: PathbarProps) => {
   return (
-    <div className='py-1 text-primary tracking-wider'>
+    <div
+      className='py-2 px-10 text-md capitalize tracking-wider bg-secondary text-base-100
+    '
+    >
       <h3>
         <Link
           to='/'
-          className='uppercase pr-1 tracking-wider hover:underline transition-all duration-300'
+          className='pr-2 tracking-wider hover:underline transition-all duration-300'
         >
           Home
         </Link>
+        &#62;
         {submenu && (
-          <Link to={`/${submenu.path}`} className='pr-1 tracking-wider '>
-            &#62;
+          <Link to={`/${submenu.path}`} className='px-2 tracking-wider '>
             <span className='hover:underline transition-all duration-300'>
-              {' '}
-              {submenu.name.toUpperCase()}
+              {submenu.name}
             </span>
           </Link>
         )}

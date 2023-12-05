@@ -36,12 +36,21 @@ export type Product = {
   warranty: string;
 };
 
+export type Filters = {
+  text: string;
+  brand: string;
+  category: string;
+  color: string;
+  minPrice: number;
+  maxPrice: number;
+};
+
 export type ProductsState = {
   isLoading: boolean;
   error: string | null;
   allProducts: Product[];
   filteredProducts: Product[];
-  featuredProducts: Product[];
+  filters: Filters;
 };
 
 export type RootState = {
