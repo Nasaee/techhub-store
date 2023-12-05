@@ -86,7 +86,7 @@ const Card: FC<CardProps> = ({ product, cardStyle }) => {
         key={id}
         className='card card-side grid grid-cols-2 h-full overflow-hidden border shadow-md hover:shadow-lg transition duration-300  max-w-[900px]'
       >
-        <figure className='relative'>
+        <figure className='relative border-r'>
           <img src={image.url} alt={name} className='h-full object-cover' />
           <div className='absolute top-3 right-[-8px] flex flex-col place-items-start gap-4 text-neutral'>
             <div className=' flex justify-center items-center w-10 h-10 bg-[#F4D03F] font-bold text-xs tracking-wider rounded-xl'>
