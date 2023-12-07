@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import createSagaMiddleware from 'redux-saga';
+import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { rootSaga } from './root-saga';
@@ -24,7 +24,7 @@ const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
       thunk: false,
-    }).concat(sagaMiddleware, loggerMiddleware),
+    }).concat(sagaMiddleware, loggerMiddleware as SagaMiddleware<object>),
 });
 
 const persistor = persistStore(store);
