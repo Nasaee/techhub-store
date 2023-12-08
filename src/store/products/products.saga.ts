@@ -9,7 +9,7 @@ import { type Product } from '../../type';
 
 const fetchProducts = async (): Promise<Product[]> => {
   const response: AxiosResponse<Product[]> = await axios.get(
-    'http://localhost:8888/.netlify/functions/products'
+    '/.netlify/functions/products'
   );
   const products: Product[] = response.data;
   return products;
