@@ -5,7 +5,7 @@ import {
   fetchProductsSuccess,
   fetchProductsFailure,
 } from './productsSlice';
-import { Product } from './productsSlice';
+import { type Product } from '../../type';
 
 const fetchProducts = async (): Promise<Product[]> => {
   const response: AxiosResponse<Product[]> = await axios.get(

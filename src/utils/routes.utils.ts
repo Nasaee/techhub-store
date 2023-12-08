@@ -1,4 +1,17 @@
-import { type Routes } from '../type';
+export type RouteObj = {
+  path: string;
+  name: string;
+};
+
+export type Routes = {
+  home: RouteObj;
+  products: RouteObj;
+  aboutUs: RouteObj;
+  cart: RouteObj;
+  signIn: RouteObj;
+  signUp: RouteObj;
+  checkout: RouteObj;
+};
 
 export const routes: Routes = {
   home: { path: '/', name: 'Home' },

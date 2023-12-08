@@ -1,6 +1,4 @@
-import { useSelector } from 'react-redux';
-
-import Hero from './Hero';
+ import Hero from './Hero';
 import FeaturedProducts from './FeaturedProducts';
 import { Link } from 'react-router-dom';
 
