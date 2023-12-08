@@ -13,6 +13,17 @@ export type Routes = {
   checkout: RouteObj;
 };
 
+export type Image = {
+  filname: string;
+  width: number;
+  height: number;
+  id: string;
+  size: number;
+  thumbnail: object;
+  type: string;
+  url: string;
+};
+
 export type Product = {
   id: string;
   name: string;
@@ -23,7 +34,7 @@ export type Product = {
   colors: string;
   price: number[];
   featured: string;
-  image: object;
+  image: Image;
   screen_size: string;
   cpu: string;
   display: string;
