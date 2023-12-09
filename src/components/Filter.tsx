@@ -13,24 +13,10 @@ const Filters = () => {
 
   return (
     <section>
-      <Dropdown name='categories' option={categories} />
-      <Dropdown name='brand' option={brand} />
-      <Dropdown name='processor' option={processor} />
-      <form className='grid grid-cols-[6rem_auto_6rem] items-center p-3 gap-4'>
-        <div className='flex flex-col gap-y-2'>
-          <label htmlFor='min-price' className='text-center'>
-            min
-          </label>
-          <input type='number' name='min-price' id='min-price' />
-        </div>
-        <hr className='transform translate-y-[15px]' />
-        <div className='flex flex-col gap-y-2'>
-          <label htmlFor='min-price' className='text-center'>
-            mix
-          </label>
-          <input type='number' name='min-price' id='min-price' />
-        </div>
-      </form>
+      <Dropdown name='categories' option={categories} style='list' />
+      <Dropdown name='brand' option={brand} style='list' />
+      <Dropdown name='processor' option={processor} style='list' />
+      <Dropdown name='price' style='min_max' />
     </section>
   );
 };
