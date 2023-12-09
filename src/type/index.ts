@@ -22,6 +22,7 @@ export type Product = {
   image: Image;
   screen_size: string;
   cpu: string;
+  cpu_details: string;
   display: string;
   memory: string;
   os: string;

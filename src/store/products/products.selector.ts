@@ -25,21 +25,48 @@ export const selectIsProductsLoading = createSelector(
 
 export const selectCategories = createSelector(
   [selectProductsReducer],
-  (products) =>
-    products.allProducts.map((products) => [
-      'all',
-      ...new Set(products.category),
-    ])
+  (products) => {
+    const uniqueCategories = products.allProducts
+      .reduce((acc, product) => {
+        if (!acc.includes(product.category)) {
+          acc.push(product.category);
+        }
+        return acc;
+      }, [] as string[])
+      .sort();
+
+    return ['All', ...uniqueCategories];
+  }
 );
 
 export const selectBrands = createSelector(
   [selectProductsReducer],
-  (products) =>
-    products.allProducts.map((product) => ['all', ...new Set(product.brand)])
+  (products) => {
+    const uniqueBrands = products.allProducts
+      .reduce((acc, product) => {
+        if (!acc.includes(product.brand)) {
+          acc.push(product.brand);
+        }
+        return acc;
+      }, [] as string[])
+      .sort();
+
+    return ['All', ...uniqueBrands];
+  }
 );
 
 export const selectProcessor = createSelector(
   [selectProductsReducer],
-  (products) =>
-    products.allProducts.map((product) => ['all', ...new Set(product.cpu)])
+  (products) => {
+    const uniqueProcessor = products.allProducts
+      .reduce((acc, product) => {
+        if (!acc.includes(product.cpu)) {
+          acc.push(product.cpu);
+        }
+        return acc;
+      }, [] as string[])
+      .sort();
+
+    return ['All', ...uniqueProcessor];
+  }
 );
