@@ -1,11 +1,14 @@
 import { BsFillGridFill, BsList } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilteredProducts } from '../store/products/products.selector';
+import {
+  selectFilteredProducts,
+  selectFilters,
+} from '../store/products/products.selector';
 import { FaArrowUp } from 'react-icons/fa6';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProductsGrid from './ProductsGrid';
 import ProductsList from './ProductsList';
-import { sortProducts } from '../store/products/productsSlice';
+import { filterProducts, sortProducts } from '../store/products/productsSlice';
 import { FaArrowDown } from 'react-icons/fa';
 
 const ProductsContainer = () => {
@@ -15,6 +18,12 @@ const ProductsContainer = () => {
   const dispath = useDispatch();
 
   const filteredProducts = useSelector(selectFilteredProducts);
+  const filters = useSelector(selectFilters);
+
+  // filter new products list when filters change
+  useEffect(() => {
+    dispath(filterProducts());
+  }, [filters]);
 
   const handleSort = () => {
     const toggleSort = sort === 'lowest' ? 'highest' : 'lowest';

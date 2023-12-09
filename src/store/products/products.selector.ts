@@ -70,3 +70,26 @@ export const selectProcessor = createSelector(
     return ['All', ...uniqueProcessor];
   }
 );
+
+export const selectMaxPrice = createSelector(
+  [selectProductsReducer],
+  (products) =>
+    products.allProducts.reduce(
+      (acc, product) => Math.max(acc, ...product.price),
+      0
+    )
+);
+
+export const selectMinPrice = createSelector(
+  [selectProductsReducer],
+  (products) =>
+    products.allProducts.reduce(
+      (acc, product) => Math.min(acc, ...product.price),
+      1
+    )
+);
+
+export const selectFilters = createSelector(
+  [selectProductsReducer],
+  (products) => products.filters
+);
