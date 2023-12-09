@@ -4,7 +4,7 @@ import Card from './Card';
 
 const ProductsGrid: FC<{ products: Product[] }> = ({ products }) => {
   return (
-    <div className='grid gap-5 gap-y-9 sm:grid-cols-2 lg:grid-cols-[repeat(3,minmax(300px,1fr))] xl:grid-cols-[repeat(4,minmax(300px,1fr))] align-center justify-items-center'>
+    <div className='grid gap-5 gap-y-9 md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] grid-rows-1 align-center justify-items-center w-full'>
       {products.map((product) => (
         <Card key={product.id} product={product} cardStyle='vertical' />
       ))}
