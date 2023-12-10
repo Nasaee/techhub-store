@@ -1,4 +1,4 @@
-const RESULT_PER_PAGE = 10;
+const RESULT_PER_PAGE = 9;
 
 export const countPages = <T>(list: T[]): number => {
   return Math.ceil(list.length / RESULT_PER_PAGE);
