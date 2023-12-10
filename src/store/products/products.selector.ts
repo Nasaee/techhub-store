@@ -82,11 +82,7 @@ export const selectMaxPrice = createSelector(
 
 export const selectMinPrice = createSelector(
   [selectProductsReducer],
-  (products) =>
-    products.allProducts.reduce(
-      (acc, product) => Math.min(acc, ...product.price),
-      1
-    )
+  (products) => products.filters.max_price
 );
 
 export const selectFilters = createSelector(

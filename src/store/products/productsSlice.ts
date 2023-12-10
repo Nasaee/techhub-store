@@ -12,7 +12,7 @@ const defaultFilters = {
   brand: 'all',
   categories: 'all',
   processor: 'all',
-  min_price: 1,
+  min_price: 0,
   max_price: 0,
 };
 
@@ -36,6 +36,11 @@ const productsSlice = createSlice({
       state.allProducts = action.payload;
       state.error = null;
       state.filteredProducts = action.payload;
+      const maxPrice = state.allProducts.reduce(
+        (acc, product) => Math.min(acc, ...product.price),
+        1
+      );
+      state.filters = { ...state.filters, max_price: maxPrice };
     },
     fetchProductsFailure: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
@@ -71,25 +76,6 @@ const productsSlice = createSlice({
         tempProducts = tempProducts = [...state.allProducts];
       }
 
-      // price
-      // ! fix error when change new max/min price not return new filter
-      if (min_price && max_price && min_price < max_price) {
-        tempProducts = [...state.allProducts];
-        tempProducts = tempProducts.filter((product) => {
-          let lastPrice: number;
-          const price = +product.price[0];
-
-          lastPrice = price;
-
-          if (product.featured) {
-            const discountPercentage = +product.featured;
-            lastPrice = discountPice(price, discountPercentage);
-          }
-
-          return lastPrice >= min_price && lastPrice <= max_price;
-        });
-      }
-
       // text
       if (text) {
         tempProducts = tempProducts.filter((product) => {
@@ -116,6 +102,24 @@ const productsSlice = createSlice({
         tempProducts = tempProducts.filter(
           (product) => product.cpu === processor
         );
+      }
+
+      // price
+      if (min_price && max_price && min_price < max_price) {
+        tempProducts = [...state.allProducts];
+        tempProducts = tempProducts.filter((product) => {
+          let lastPrice: number;
+          const price = +product.price[0];
+
+          lastPrice = price;
+
+          if (product.featured) {
+            const discountPercentage = +product.featured;
+            lastPrice = discountPice(price, discountPercentage);
+          }
+
+          return lastPrice >= min_price && lastPrice <= max_price;
+        });
       }
 
       state.filteredProducts = tempProducts;

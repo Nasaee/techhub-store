@@ -3,15 +3,23 @@ import Dropdown from './Dropdown';
 import {
   selectBrands,
   selectCategories,
+  selectFilters,
   selectProcessor,
 } from '../store/products/products.selector';
-import { resetFilters } from '../store/products/productsSlice';
+import { filterProducts, resetFilters } from '../store/products/productsSlice';
+import { useEffect } from 'react';
 
 const Filters = () => {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
   const brand = useSelector(selectBrands);
   const processor = useSelector(selectProcessor);
+  const filters = useSelector(selectFilters);
+
+  // filter new products list when filters change
+  useEffect(() => {
+    dispatch(filterProducts());
+  }, [filters]);
 
   return (
     <section>
