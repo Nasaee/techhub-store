@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { RootState } from '../../type';
+import { type RootState } from '../../utils/type';
 
 const selectProductsReducer = (store: RootState) => store.products;
 

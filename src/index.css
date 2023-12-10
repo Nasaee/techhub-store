@@ -17,7 +17,7 @@ body {
 
 @layer components {
   .align-element {
-    @apply mx-auto max-w-screen-2xl px-8 pb-20;
+    @apply mx-auto max-w-screen-2xl px-8 pb-0;
   }
   .icon {
     @apply w-6 h-6 xl:w-7 xl:h-7;

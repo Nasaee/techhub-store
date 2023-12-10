@@ -1,10 +1,10 @@
- import Hero from './Hero';
+import Hero from './Hero';
 import FeaturedProducts from './FeaturedProducts';
 import { Link } from 'react-router-dom';
 
 const Landing = () => {
   return (
-    <div>
+    <div className='pb-20'>
       <Hero />
       <FeaturedProducts />
       <div className='flex justify-center mt-24'>

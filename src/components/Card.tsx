@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Product } from '../type';
+import { type Product } from '../utils/type';
 import { useSelector } from 'react-redux';
 import { selectIsProductsLoading } from '../store/products/products.selector';
 import CardSkeleton from './CardSkeleton';

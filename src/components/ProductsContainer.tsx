@@ -7,14 +7,22 @@ import ProductsGrid from './ProductsGrid';
 import ProductsList from './ProductsList';
 import { sortProducts } from '../store/products/productsSlice';
 import { FaArrowDown } from 'react-icons/fa';
+import { Pagination } from 'flowbite-react';
+import { countPages, getPageResult } from '../utils/pageResult.utils';
 
 const ProductsContainer = () => {
+  const dispath = useDispatch();
+
   const [layout, setLayout] = useState('grid');
   const [sort, setSort] = useState<'lowest' | 'highest'>('lowest');
 
-  const dispath = useDispatch();
-
   const filteredProducts = useSelector(selectFilteredProducts);
+
+  // PAGINATION and reder page result
+  const [currentPage, setCurrentPage] = useState(1);
+  const onPageChange = (page: number) => setCurrentPage(page);
+  const totalPages = countPages(filteredProducts);
+  const pageResult = getPageResult(currentPage, filteredProducts);
 
   const handleSort = () => {
     const toggleSort = sort === 'lowest' ? 'highest' : 'lowest';
@@ -31,7 +39,7 @@ const ProductsContainer = () => {
   };
 
   return (
-    <section className='lg:px-6'>
+    <section className='lg:px-6 flex flex-col'>
       {/* HEADER */}
       <div className='grid grid-cols-[auto_auto_1fr_auto] items-center gap-8 my-8 pb-5'>
         <div className='flex gap-x-4'>
@@ -64,17 +72,29 @@ const ProductsContainer = () => {
         </button>
       </div>
       {/* PRODUCTS */}
-      <div className='grid place-items-center'>
+      <div className='grid place-items-center mb-12'>
         {filteredProducts.length === 0 ? (
           <h5 className='text-2xl mt-16'>
             Sorry, no products matched your search...
           </h5>
         ) : layout === 'grid' ? (
-          <ProductsGrid products={filteredProducts} />
+          <ProductsGrid products={pageResult} />
         ) : (
-          <ProductsList products={filteredProducts} />
+          <ProductsList products={pageResult} />
         )}
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className='flex overflow-x-auto sm:self-center mb-20'>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={onPageChange}
+            showIcons
+          />
+        </div>
+      )}
     </section>
   );
 };

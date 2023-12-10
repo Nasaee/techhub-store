@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Product } from '../type';
+import { type Product } from '../utils/type';
 import Card from './Card';
 
 const ProductsGrid: FC<{ products: Product[] }> = ({ products }) => {
