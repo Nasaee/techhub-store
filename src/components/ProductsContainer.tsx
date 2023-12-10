@@ -39,7 +39,7 @@ const ProductsContainer = () => {
   };
 
   return (
-    <section className='lg:px-6 flex flex-col'>
+    <section className='lg:px-6 flex flex-col border-b border-r'>
       {/* HEADER */}
       <div className='grid grid-cols-[auto_auto_1fr_auto] items-center gap-8 my-8 pb-5'>
         <div className='flex gap-x-4'>
