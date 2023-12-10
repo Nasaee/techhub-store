@@ -1,36 +1,38 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Dropdown from './Dropdown';
 import {
   selectBrands,
   selectCategories,
+  selectFilters,
   selectProcessor,
 } from '../store/products/products.selector';
+import { filterProducts, resetFilters } from '../store/products/productsSlice';
+import { useEffect } from 'react';
 
 const Filters = () => {
+  const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
   const brand = useSelector(selectBrands);
   const processor = useSelector(selectProcessor);
+  const filters = useSelector(selectFilters);
+
+  // filter new products list when filters change
+  useEffect(() => {
+    dispatch(filterProducts());
+  }, [filters]);
 
   return (
     <section>
-      <Dropdown name='categories' option={categories} />
-      <Dropdown name='brand' option={brand} />
-      <Dropdown name='processor' option={processor} />
-      <form className='grid grid-cols-[6rem_auto_6rem] items-center p-3 gap-4'>
-        <div className='flex flex-col gap-y-2'>
-          <label htmlFor='min-price' className='text-center'>
-            min
-          </label>
-          <input type='number' name='min-price' id='min-price' />
-        </div>
-        <hr className='transform translate-y-[15px]' />
-        <div className='flex flex-col gap-y-2'>
-          <label htmlFor='min-price' className='text-center'>
-            mix
-          </label>
-          <input type='number' name='min-price' id='min-price' />
-        </div>
-      </form>
+      <button
+        className='block btn btn-primary w-[80%] mx-auto my-4 text-lg uppercase'
+        onClick={() => dispatch(resetFilters())}
+      >
+        reset
+      </button>
+      <Dropdown groupName='categories' option={categories} style='list' />
+      <Dropdown groupName='brand' option={brand} style='list' />
+      <Dropdown groupName='processor' option={processor} style='list' />
+      <Dropdown groupName='price' style='min_max' />
     </section>
   );
 };

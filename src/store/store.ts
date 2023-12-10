@@ -9,6 +9,7 @@ import { createLogger } from 'redux-logger';
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['products'],
 };
 
 const sagaMiddleware = createSagaMiddleware();

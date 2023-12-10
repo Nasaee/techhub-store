@@ -36,10 +36,10 @@ export type Product = {
 export type Filters = {
   text: string;
   brand: string;
-  category: string;
-  color: string;
-  minPrice: number;
-  maxPrice: number;
+  categories: string;
+  processor: string;
+  min_price: number;
+  max_price: number;
 };
 
 export type ProductsState = {
