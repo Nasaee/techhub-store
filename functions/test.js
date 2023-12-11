@@ -4,7 +4,7 @@ const items = [
   { id: 2, name: 'susan' },
 ];
 
-exports.handler = async function (event, context) {
+exports.handler = async function () {
   return {
     statusCode: 200,
     body: JSON.stringify(items),

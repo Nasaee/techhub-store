@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { type Product, type ProductsState } from '../../type';
+import { type Product, type ProductsState } from '../../utils/type';
 import { discountPice } from '../../utils/displayPrice.utils';
 
 type updateFiltersPayload = {
