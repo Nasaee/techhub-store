@@ -15,7 +15,12 @@ const Menu = () => {
     <div className='relative lg:hidden'>
       <label className='btn btn-circle swap swap-rotate text-primary '>
         {/* this hidden checkbox controls the state */}
-        <input type='checkbox' onChange={handleChange} checked={isMenuOpen} />
+        <input
+          type='checkbox'
+          onChange={handleChange}
+          checked={isMenuOpen}
+          className='hidden'
+        />
 
         {/* hamburger icon */}
         <svg
@@ -45,7 +50,6 @@ const Menu = () => {
           {Object.keys(routes).map((key) => {
             const route = routes[key as keyof Routes];
             if (
-              route !== routes.cart &&
               route !== routes.signIn &&
               route !== routes.signUp &&
               route !== routes.checkout
@@ -68,60 +72,9 @@ const Menu = () => {
           })}
         </ul>
       )}
+
+      {/* //TODO  if user then signin else signout */}
     </div>
   );
-
-  // return (
-  //   <details className='dropdown lg:hidden'>
-  //     <summary className='m-1 btn bg-transparent border-none'>
-  //       <IoMdMenu className='icon text-primary w-full h-full' />
-  //     </summary>
-  // <ul className='p-2 shadow menu dropdown-content z-[1] bg-base-300 rounded-box w-52'>
-  //   {Object.keys(routes).map((key) => {
-  //     const route = routes[key as keyof Routes];
-  //     if (
-  //       route !== routes.cart &&
-  //       route !== routes.signIn &&
-  //       route !== routes.signUp &&
-  //       route !== routes.checkout
-  //     ) {
-  //       return (
-  //         <li key={key} className='px-1 py-1'>
-  //           <Link
-  //             to={route.path}
-  //             className='text-md xl:text-lg uppercase bold text-primary'
-  //           >
-  //             {route.name}
-  //           </Link>
-  //         </li>
-  //       );
-  //     }
-  //   })}
-  // </ul>
-  //   </details>
-  // );
-
-  //   return (
-  //     <div className='relative'>
-
-  //       <ul className='lg:hidden absolute bottom-0 left-0 flex flex-row'>
-  //         {Object.keys(routes).map((key) => {
-  //           const route = routes[key as keyof Routes];
-  //           if (
-  //             route !== routes.cart &&
-  //             route !== routes.signIn &&
-  //             route !== routes.signUp &&
-  //             route !== routes.checkout
-  //           ) {
-  //             return (
-  //               <li key={key}>
-  //                 <Link to={route.path}>{route.name}</Link>
-  //               </li>
-  //             );
-  //           }
-  //         })}
-  //       </ul>
-  //     </div>
-  //   );
 };
 export default Menu;
