@@ -22,7 +22,6 @@ const Searchbar = () => {
       dispath(resetFilters());
       navigate('/products');
       dispath(updateFilters({ filterName: 'text', value: searchInput }));
-      setSearchInput('');
     },
     [searchInput]
   );
