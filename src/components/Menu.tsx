@@ -50,8 +50,8 @@ const Menu = () => {
           {Object.keys(routes).map((key) => {
             const route = routes[key as keyof Routes];
             if (
-              route !== routes.signIn &&
-              route !== routes.signUp &&
+              // route !== routes.signIn &&
+              // route !== routes.signUp &&
               route !== routes.checkout
             ) {
               return (

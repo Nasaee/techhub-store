@@ -3,7 +3,7 @@ import commitmentImg from '../assets/commitment.webp';
 import informationImg from '../assets/announce.webp';
 const AboutUs = () => {
   return (
-    <section className='pb-28'>
+    <section className='py-20'>
       <div className='about-header mb-16'>
         <div className='text-center w-[60%] mx-auto p-12 bg-[rgba(0,0,0,0.55)] text-base-300'>
           <h2 className='text-4xl font-bold text-[#e9ecef] tracking-widest mb-10'>

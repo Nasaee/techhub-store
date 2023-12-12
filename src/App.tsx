@@ -3,7 +3,7 @@ import {
   ErrorPage,
   Home,
   Products,
-  AboutUs,
+  About,
   Cart,
   SignIn,
   PrivateRoute,
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       { path: `${products.path}/:id`, element: <SingleProduct /> },
       {
         path: aboutUs.path,
-        element: <AboutUs />,
+        element: <About />,
       },
       {
         path: cart.path,
