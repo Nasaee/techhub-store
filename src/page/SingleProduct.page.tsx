@@ -27,7 +27,7 @@ export const loader =
   };
 
 const SingleProduct = () => {
-  const { product } = useLoaderData() as {
+  const { product }: { product: SingleProductData } = useLoaderData() as {
     product: SingleProductData;
   };
   const {
