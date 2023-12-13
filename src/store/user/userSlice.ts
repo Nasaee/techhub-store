@@ -6,14 +6,10 @@ const themes = {
 } as const;
 
 type UserState = {
-  currentUser: string | null;
-  loadingUser: boolean;
   theme: (typeof themes)[keyof typeof themes];
 };
 
 const initialState: UserState = {
-  currentUser: null,
-  loadingUser: false,
   theme: themes.winter,
 };
 
