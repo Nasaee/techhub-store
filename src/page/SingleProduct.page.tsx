@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { SINGLE_PRODUCT_URL } from '../utils/productsAPI.utils';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigation } from 'react-router-dom';
 import { QueryClient } from '@tanstack/react-query';
 import { Image, Product } from '../utils/type';
+import Loading from '../components/Loading';
 
 type SingleProductData = Omit<Product, 'image'> & { images: Image[] };
 
@@ -30,6 +31,7 @@ const SingleProduct = () => {
   const { product }: { product: SingleProductData } = useLoaderData() as {
     product: SingleProductData;
   };
+
   const {
     name,
     brand,
