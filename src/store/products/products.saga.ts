@@ -6,13 +6,11 @@ import {
   fetchProductsFailure,
 } from './productsSlice';
 import { type Product } from '../../utils/type';
+import { PRODUCTS_URL } from '../../utils/api';
 
 const fetchProducts = async (): Promise<Product[]> => {
-  const response: AxiosResponse<Product[]> = await axios.get(
-    '/.netlify/functions/products'
-  );
-  const products: Product[] = response.data;
-  return products;
+  const response: AxiosResponse<Product[]> = await axios.get(PRODUCTS_URL);
+  return response.data;
 };
 
 function* fetchProductsAsync() {

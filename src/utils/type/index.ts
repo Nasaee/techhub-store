@@ -42,6 +42,16 @@ export type Filters = {
   max_price: number;
 };
 
+export type TSingleProduct = Omit<Product, 'image'> & {
+  images: Image[];
+};
+
+export type SingleProductState = {
+  isLoading: boolean;
+  error: string | null;
+  product: TSingleProduct | null;
+};
+
 export type ProductsState = {
   isLoading: boolean;
   error: string | null;
