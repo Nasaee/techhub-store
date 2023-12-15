@@ -1,32 +1,5 @@
-import axios from 'axios';
-import { SINGLE_PRODUCT_URL } from '../utils/productsAPI.utils';
-import { useLoaderData } from 'react-router-dom';
-import { QueryClient } from '@tanstack/react-query';
-import { Image, Product } from '../utils/type';
-
-type SingleProductData = Omit<Product, 'image'> & { images: Image[] };
-
-const singleProductQuery = (id: string) => {
-  return {
-    queryKey: ['singleProduct', id],
-    queryFn: async () => {
-      const response = await axios.get(`${SINGLE_PRODUCT_URL}${id}`);
-      console.log(response.data);
-      return { product: response.data };
-    },
-  };
-};
-
-export const loader =
-  (queryClient: QueryClient) =>
-  async ({ params }: { params: { id: string } }) => {
-    const response = await queryClient.ensureQueryData(
-      singleProductQuery(params.id)
-    );
-    return response;
-  };
-
 const SingleProduct = () => {
+<<<<<<< HEAD
   const { product }: { product: SingleProductData } = useLoaderData() as {
     product: SingleProductData;
   };
@@ -55,5 +28,8 @@ const SingleProduct = () => {
   } = product;
 
   return <div>{product?.name}</div>;
+=======
+  return <div>SingleProduct</div>;
+>>>>>>> parent of 6dd5bc8 (Reapply "setup SingleProduct component with react query")
 };
 export default SingleProduct;
