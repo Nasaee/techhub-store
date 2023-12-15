@@ -1,5 +1,4 @@
 const SingleProduct = () => {
-<<<<<<< HEAD
   const { product }: { product: SingleProductData } = useLoaderData() as {
     product: SingleProductData;
   };
@@ -28,8 +27,5 @@ const SingleProduct = () => {
   } = product;
 
   return <div>{product?.name}</div>;
-=======
-  return <div>SingleProduct</div>;
->>>>>>> parent of 6dd5bc8 (Reapply "setup SingleProduct component with react query")
 };
 export default SingleProduct;
