@@ -1,8 +1,5 @@
 import { FC } from 'react';
 import { type Product } from '../utils/type';
-import { useSelector } from 'react-redux';
-import { selectIsProductsLoading } from '../store/products/products.selector';
-import CardSkeleton from './CardSkeleton';
 import { Link } from 'react-router-dom';
 import displayPrice from '../utils/displayPrice.utils';
 import { LiaShippingFastSolid } from 'react-icons/lia';
@@ -21,11 +18,6 @@ const Card: FC<CardProps> = ({ product, cardStyle }) => {
     featured: discountPercentage,
     image,
   } = product;
-  const isLoading = useSelector(selectIsProductsLoading);
-
-  if (isLoading) {
-    return <CardSkeleton cardStyle={cardStyle} />;
-  }
 
   const cardComponent = {
     vertical: (
