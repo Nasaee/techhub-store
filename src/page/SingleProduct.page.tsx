@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 const SingleProduct = () => {
+<<<<<<< HEAD
   return <div>SingleProduct</div>;
 =======
 import axios from 'axios';
@@ -59,5 +60,8 @@ const SingleProduct = () => {
 
   return <div>{product?.name}</div>;
 >>>>>>> parent of 042532d (setup loading page)
+=======
+  return <div>Singleproduct</div>;
+>>>>>>> test-work
 };
 export default SingleProduct;

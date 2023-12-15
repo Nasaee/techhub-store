@@ -15,7 +15,12 @@ const Menu = () => {
     <div className='relative lg:hidden'>
       <label className='btn btn-circle swap swap-rotate text-primary '>
         {/* this hidden checkbox controls the state */}
-        <input type='checkbox' onChange={handleChange} checked={isMenuOpen} />
+        <input
+          type='checkbox'
+          onChange={handleChange}
+          checked={isMenuOpen}
+          className='hidden'
+        />
 
         {/* hamburger icon */}
         <svg
@@ -45,7 +50,6 @@ const Menu = () => {
           {Object.keys(routes).map((key) => {
             const route = routes[key as keyof Routes];
             if (
-              route !== routes.cart &&
               route !== routes.signIn &&
               route !== routes.signUp &&
               route !== routes.checkout
@@ -68,6 +72,8 @@ const Menu = () => {
           })}
         </ul>
       )}
+
+      {/* //TODO  if user then signin else signout */}
     </div>
   );
 };
