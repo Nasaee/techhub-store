@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&display=swap');
+
+body {
+  font-family: 'Kanit', sans-serif;
+}
+
+.about-header {
+  background-image: url('./assets/about-bg.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .align-element {
+    @apply mx-auto max-w-screen-2xl px-8 pb-0;
+  }
+  .icon {
+    @apply w-6 h-6 xl:w-7 xl:h-7;
+  }
+
+  .flex-center {
+    @apply justify-center items-center;
+  }
+
+  .activeSlide {
+    @apply opacity-100 translate-x-[0];
+  }
+
+  .nextSlide {
+    @apply translate-x-full opacity-0;
+  }
+
+  .prevSlide {
+    @apply translate-x-[-100%] opacity-0;
+  }
+
+  .next {
+    @apply absolute top-1/2 right-12 translate-y-[-50%] grid place-items-center text-base hover:bg-[rgba(189,195,199,0.3)] p-2 rounded-full transition duration-300;
+  }
+
+  .prev {
+    @apply absolute top-1/2 left-12 translate-y-[-50%] grid place-items-center text-base hover:bg-[rgba(189,195,199,0.3)] p-2 rounded-full transition duration-300;
+  }
+}
