@@ -62,5 +62,5 @@ export type ProductsState = {
 
 export type RootState = {
   products: ProductsState;
-  // Add other slices if you have more in your store
+  singleProduct: SingleProductState;
 };
