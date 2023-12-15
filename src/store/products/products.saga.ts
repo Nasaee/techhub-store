@@ -17,9 +17,9 @@ function* fetchProductsAsync() {
   try {
     const products: Product[] = yield call(fetchProducts);
     yield put(fetchProductsSuccess(products));
-  } catch (error) {
-    if (typeof error === 'string') {
-      yield put(fetchProductsFailure(error));
+  } catch (error: any) {
+    if (error.message) {
+      yield put(fetchProductsFailure(error.message));
     } else {
       yield put(fetchProductsFailure('fetch data failed'));
     }

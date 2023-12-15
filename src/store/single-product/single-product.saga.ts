@@ -22,9 +22,9 @@ function* fetchSingleProductAsync(action: PayloadAction<string>) {
   try {
     const product: TSingleProduct = yield call(fetchSingleProduct, id);
     yield put(fetchSingleProductSuccess(product));
-  } catch (error) {
-    if (typeof error === 'string') {
-      yield put(fetchSingleProductFailure(error));
+  } catch (error: any) {
+    if (error.message) {
+      yield put(fetchSingleProductFailure(error.message));
     } else {
       yield put(fetchSingleProductFailure('fetch data failed'));
     }
