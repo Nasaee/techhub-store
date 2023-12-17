@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SingleProductState, TSingleProduct } from '../../utils/type';
+import { TSingleProductState, TSingleProduct } from '../../utils/type';
 
-const initialState: SingleProductState = {
+const initialState: TSingleProductState = {
   isLoading: false,
   error: null,
   product: null,

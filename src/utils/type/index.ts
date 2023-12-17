@@ -16,7 +16,7 @@ export type Product = {
   category: string;
   stock: number;
   description: string;
-  colors: string;
+  colors: string[];
   price: number[];
   featured: string;
   image: Image;
@@ -24,7 +24,7 @@ export type Product = {
   cpu: string;
   cpu_details: string;
   display: string;
-  memory: string;
+  memory: string[];
   os: string;
   font_camera: string;
   back_camera: string;
@@ -46,7 +46,7 @@ export type TSingleProduct = Omit<Product, 'image'> & {
   images: Image[];
 };
 
-export type SingleProductState = {
+export type TSingleProductState = {
   isLoading: boolean;
   error: string | null;
   product: TSingleProduct | null;
@@ -62,5 +62,5 @@ export type ProductsState = {
 
 export type RootState = {
   products: ProductsState;
-  singleProduct: SingleProductState;
+  singleProduct: TSingleProductState;
 };

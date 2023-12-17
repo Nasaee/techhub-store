@@ -5,6 +5,7 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { store, persistor } from './store/store.ts';
 import { PersistGate } from 'redux-persist/integration/react';
+import 'react-image-gallery/styles/css/image-gallery.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
