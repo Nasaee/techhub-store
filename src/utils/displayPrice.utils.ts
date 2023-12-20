@@ -1,7 +1,12 @@
 export const discountPice = (
   price: number,
-  discountPercentage: number
-): number => (price * (100 - discountPercentage)) / 100;
+  discountPercentage?: number
+): number => {
+  if (!discountPercentage) {
+    return price;
+  }
+  return (price * (100 - discountPercentage)) / 100;
+};
 
 const config = {
   style: 'currency',
