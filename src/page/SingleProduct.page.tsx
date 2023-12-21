@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ImageGallery from 'react-image-gallery';
 
@@ -9,8 +9,10 @@ import displayPrice, { discountPice } from '../utils/displayPrice.utils';
 import { IoShieldOutline } from 'react-icons/io5';
 import { HiMinus, HiPlus } from 'react-icons/hi2';
 import { selectSingleProduct } from '../store/products/products.selector';
+import { addToCart } from '../store/cart/cartSlice';
 
 const SingleProduct = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
 
   const product = useSelector(selectSingleProduct(id as string));
@@ -19,8 +21,6 @@ const SingleProduct = () => {
     // TODO return to not found page
     return null;
   }
-
-  console.log(product);
 
   const {
     name,
@@ -39,6 +39,30 @@ const SingleProduct = () => {
   const [pickedColors, setPickedColors] = useState(colors[0]);
   const [quantity, setQuantity] = useState(1);
 
+  const handleAddToCart = useCallback(() => {
+    const pickOptions = {
+      id,
+      name,
+      price: discountPice(price[pickedStorage], +featured),
+      color: pickedColors,
+      quantity,
+      brand,
+      storage: memory[pickedStorage],
+      image: images[0].url,
+    };
+    dispatch(addToCart(pickOptions));
+  }, [
+    price,
+    id,
+    name,
+    pickedStorage,
+    pickedColors,
+    quantity,
+    brand,
+    memory,
+    images,
+  ]);
+
   const productDetailsKey = Object.keys(product).filter((key) =>
     [
       'screen_size',
@@ -53,18 +77,6 @@ const SingleProduct = () => {
       'warranty',
     ].includes(key)
   );
-
-  const pickOptions = {
-    id,
-    price: discountPice(price[pickedStorage], +featured),
-    color: pickedColors,
-    quantity,
-    name,
-    brand,
-    storage: memory[pickedStorage],
-  };
-
-  console.log(pickOptions);
 
   const updateQuantity = useCallback(
     (type: 'increase' | 'decrease') => {
@@ -200,7 +212,10 @@ const SingleProduct = () => {
             </button>
           </div>
         </div>
-        <button className='btn btn-primary text-lg uppercase'>
+        <button
+          className='btn btn-primary text-lg uppercase'
+          onClick={() => handleAddToCart()}
+        >
           Add to cart
         </button>
       </div>

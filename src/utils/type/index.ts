@@ -42,13 +42,23 @@ export type Filters = {
   max_price: number;
 };
 
+export type TCartItem = {
+  id: string;
+  name: string;
+  price: number;
+  color: string;
+  quantity: number;
+  brand: string;
+  storage: string;
+  image: string;
+};
+
 export type ProductsState = {
   isLoading: boolean;
   error: string | null;
   allProducts: TProduct[];
   filteredProducts: TProduct[];
   filters: Filters;
-  singleProduct: TProduct | null;
 };
 
 export type RootState = {

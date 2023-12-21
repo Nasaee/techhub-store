@@ -22,7 +22,6 @@ const initialState: ProductsState = {
   allProducts: [],
   filteredProducts: [],
   filters: defaultFilters,
-  singleProduct: null,
 };
 
 const productsSlice = createSlice({

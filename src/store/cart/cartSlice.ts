@@ -1,19 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { TCartItem } from '../../utils/type';
 
-type TCart = {
-  id: string;
-  name: string;
-  color: string;
-  price: number;
-  quantity: number;
-  brand: string;
-  storage: string;
-};
-type TState = TCart[];
+type TState = TCartItem[];
 
 const initialState: TState = [];
 
-const checkItemIsExist = (state: TState, productToAdd: TCart) => {
+const checkItemIsExist = (state: TState, productToAdd: TCartItem) => {
   return state.find(
     (item) =>
       item.id === productToAdd.id &&
@@ -46,3 +38,7 @@ export const cartSlice = createSlice({
     },
   },
 });
+
+export const { addToCart } = cartSlice.actions;
+
+export default cartSlice.reducer;
