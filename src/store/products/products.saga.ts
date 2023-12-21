@@ -5,17 +5,17 @@ import {
   fetchProductsSuccess,
   fetchProductsFailure,
 } from './productsSlice';
-import { type Product } from '../../utils/type';
+import { TProduct } from '../../utils/type';
 import { PRODUCTS_URL } from '../../utils/api';
 
-const fetchProducts = async (): Promise<Product[]> => {
-  const response: AxiosResponse<Product[]> = await axios.get(PRODUCTS_URL);
+const fetchProducts = async (): Promise<TProduct[]> => {
+  const response: AxiosResponse<TProduct[]> = await axios.get(PRODUCTS_URL);
   return response.data;
 };
 
 function* fetchProductsAsync() {
   try {
-    const products: Product[] = yield call(fetchProducts);
+    const products: TProduct[] = yield call(fetchProducts);
     yield put(fetchProductsSuccess(products));
   } catch (error: any) {
     if (error.message) {

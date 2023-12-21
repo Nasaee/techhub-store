@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import { type Product } from '../utils/type';
+import { TProduct } from '../utils/type';
 import { Link } from 'react-router-dom';
 import displayPrice from '../utils/displayPrice.utils';
 import { LiaShippingFastSolid } from 'react-icons/lia';
 
 type CardProps = {
-  product: Product;
+  product: TProduct;
   cardStyle: 'horizontal' | 'vertical';
 };
 
@@ -16,7 +16,7 @@ const Card: FC<CardProps> = ({ product, cardStyle }) => {
     description,
     price,
     featured: discountPercentage,
-    image,
+    images,
   } = product;
 
   const cardComponent = {
@@ -27,7 +27,7 @@ const Card: FC<CardProps> = ({ product, cardStyle }) => {
       >
         <figure>
           <img
-            src={image.url}
+            src={images[0].url}
             alt={name}
             className='object-cover p-2 rounded-3xl'
           />
@@ -79,7 +79,7 @@ const Card: FC<CardProps> = ({ product, cardStyle }) => {
         className='card card-side grid grid-cols-2 h-full overflow-hidden border transition duration-300  max-w-[900px]'
       >
         <figure className='relative border-r'>
-          <img src={image.url} alt={name} className='h-full object-cover' />
+          <img src={images[0].url} alt={name} className='h-full object-cover' />
           <div className='absolute top-3 right-[-8px] flex flex-col place-items-start gap-4 text-neutral'>
             <div className=' flex justify-center items-center w-10 h-10 bg-[#F4D03F] font-bold text-xs tracking-wider rounded-xl'>
               <span className='text-3xl'>0</span>%

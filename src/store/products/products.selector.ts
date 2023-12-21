@@ -89,3 +89,8 @@ export const selectFilters = createSelector(
   [selectProductsReducer],
   (products) => products.filters
 );
+
+export const selectSingleProduct = (id: string) =>
+  createSelector([selectProductsReducer], (products) =>
+    products.allProducts.find((product) => product.id === id)
+  );

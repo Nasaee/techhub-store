@@ -9,7 +9,7 @@ export type Image = {
   url: string;
 };
 
-export type Product = {
+export type TProduct = {
   id: string;
   name: string;
   brand: string;
@@ -19,7 +19,7 @@ export type Product = {
   colors: string[];
   price: number[];
   featured: string;
-  image: Image;
+  images: Image[];
   screen_size: string;
   cpu: string;
   cpu_details: string;
@@ -42,25 +42,15 @@ export type Filters = {
   max_price: number;
 };
 
-export type TSingleProduct = Omit<Product, 'image'> & {
-  images: Image[];
-};
-
-export type TSingleProductState = {
-  isLoading: boolean;
-  error: string | null;
-  product: TSingleProduct | null;
-};
-
 export type ProductsState = {
   isLoading: boolean;
   error: string | null;
-  allProducts: Product[];
-  filteredProducts: Product[];
+  allProducts: TProduct[];
+  filteredProducts: TProduct[];
   filters: Filters;
+  singleProduct: TProduct | null;
 };
 
 export type RootState = {
   products: ProductsState;
-  singleProduct: TSingleProductState;
 };

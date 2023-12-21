@@ -12,52 +12,8 @@ exports.handler = async function () {
     const response = await airtable.list({ maxRecords: 200 });
     const products = response?.records.map((product) => {
       const { id, fields } = product;
-      const {
-        name,
-        brand,
-        category,
-        stock,
-        description,
-        colors,
-        price,
-        featured,
-        images: [image],
-        screen_size,
-        cpu,
-        cpu_details,
-        display,
-        memory,
-        os,
-        font_camera,
-        back_camera,
-        battety,
-        weight,
-        warranty,
-      } = fields;
 
-      return {
-        id,
-        name,
-        brand,
-        category,
-        stock,
-        description,
-        colors,
-        price,
-        featured,
-        image,
-        screen_size,
-        cpu,
-        cpu_details,
-        display,
-        memory,
-        os,
-        font_camera,
-        back_camera,
-        battety,
-        weight,
-        warranty,
-      };
+      return { id, ...fields };
     });
 
     return {
