@@ -1,45 +1,38 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchSingleProductStart } from '../store/single-product/single-productSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectIsSingleProductLoading,
-  selectSingleProduct,
-} from '../store/single-product/single-product.selector';
-import Loading from '../components/Loading';
+
+import { useSelector } from 'react-redux';
+
 import ImageGallery from 'react-image-gallery';
-import { TSingleProduct } from '../utils/type';
+
 import displayPrice, { discountPice } from '../utils/displayPrice.utils';
 import { IoShieldOutline } from 'react-icons/io5';
 import { HiMinus, HiPlus } from 'react-icons/hi2';
+import { selectSingleProduct } from '../store/products/products.selector';
 
 const SingleProduct = () => {
-  const dispatch = useDispatch();
   const { id } = useParams();
-  const product = useSelector(selectSingleProduct);
-  const isSingleProductLoading = useSelector(selectIsSingleProductLoading);
 
-  useEffect(() => {
-    if (id !== product?.id) {
-      dispatch(fetchSingleProductStart(id as string));
-    }
-  }, [id, product?.id]);
+  const product = useSelector(selectSingleProduct(id as string));
 
-  if (!product || isSingleProductLoading) {
-    return <Loading />;
+  if (!product) {
+    // TODO return to not found page
+    return null;
   }
+
+  console.log(product);
 
   const {
     name,
-    brand,
-    stock,
-    description,
-    colors,
-    price,
-    featured,
     images,
-    memory,
+    price,
+    brand,
+    description,
     warranty,
+    featured,
+    stock,
+    colors,
+    memory,
   } = product;
 
   const [pickedStorage, setPickedStorage] = useState(0);
@@ -122,7 +115,7 @@ const SingleProduct = () => {
                     detailType.length > 2 ? 'capitalize' : 'uppercase'
                   } font-semibold`}
                 >{`${detailType}: `}</span>
-                {String(product[key as keyof TSingleProduct])}
+                {product[key as keyof typeof product].toString()}
               </li>
             );
           })}

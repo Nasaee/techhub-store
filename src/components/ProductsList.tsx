@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { type Product } from '../utils/type';
+import { TProduct } from '../utils/type';
 import Card from './Card';
 
-const ProductsList: FC<{ products: Product[] }> = ({ products }) => {
+const ProductsList: FC<{ products: TProduct[] }> = ({ products }) => {
   return (
     <div className='flex flex-col gap-y-6'>
       {products.map((product) => (

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { type Product, type ProductsState } from '../../utils/type';
+import { TProduct, type ProductsState } from '../../utils/type';
 import { discountPice } from '../../utils/displayPrice.utils';
 
 type updateFiltersPayload = {
@@ -22,6 +22,7 @@ const initialState: ProductsState = {
   allProducts: [],
   filteredProducts: [],
   filters: defaultFilters,
+  singleProduct: null,
 };
 
 const productsSlice = createSlice({
@@ -31,7 +32,7 @@ const productsSlice = createSlice({
     fetchProductsStart: (state) => {
       state.isLoading = true;
     },
-    fetchProductsSuccess: (state, action: PayloadAction<Product[]>) => {
+    fetchProductsSuccess: (state, action: PayloadAction<TProduct[]>) => {
       state.isLoading = false;
       state.allProducts = action.payload;
       state.error = null;
