@@ -49,6 +49,7 @@ const SingleProduct = () => {
       brand,
       storage: memory[pickedStorage],
       image: images[0].url,
+      stock,
     };
     dispatch(addToCart(pickOptions));
   }, [
@@ -103,6 +104,8 @@ const SingleProduct = () => {
       thumbnail: image.url,
     };
   });
+
+  console.log(quantity < 2);
 
   return (
     <article className='grid grid-cols-1 lg:grid-cols-2 gap-10 pt-12 pb-20'>
@@ -193,7 +196,7 @@ const SingleProduct = () => {
           <span className='text-sm text-[#868e96] '>Quantity:</span>
           <div className='flex items-center gap-4'>
             <button
-              className={`text-black ${quantity < 2 && 'text-[#dee2e6]'}`}
+              className={`${quantity <= 1 ? 'text-[#dee2e6]' : 'text-black'}`}
               onClick={() => updateQuantity('decrease')}
             >
               <HiMinus />
@@ -207,7 +210,9 @@ const SingleProduct = () => {
               onChange={(e) => setQuantity(+e.target.value)}
             />
             <button
-              className={`text-black ${quantity >= stock && 'text-[#dee2e6]'}`}
+              className={`${
+                quantity >= stock ? 'text-[#dee2e6]' : 'text-black'
+              }`}
               onClick={() => updateQuantity('increase')}
             >
               <HiPlus />

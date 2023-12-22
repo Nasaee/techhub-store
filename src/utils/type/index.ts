@@ -51,6 +51,7 @@ export type TCartItem = {
   brand: string;
   storage: string;
   image: string;
+  stock: number;
 };
 
 export type ProductsState = {
@@ -63,4 +64,5 @@ export type ProductsState = {
 
 export type RootState = {
   products: ProductsState;
+  cart: TCartItem[];
 };
