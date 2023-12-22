@@ -18,7 +18,7 @@ const SingleProduct = () => {
   const product = useSelector(selectSingleProduct(id as string));
 
   if (!product) {
-    // TODO return to not found page
+    //! TODO return to not found page
     return null;
   }
 
@@ -110,14 +110,14 @@ const SingleProduct = () => {
         <ImageGallery items={displayImages} />
       </div>
       <div>
-        <h3 className='text-2xl font-bold tracking-wider mb-1'>{name}</h3>
+        <h3 className='text-xl font-bold tracking-wider mb-1'>{name}</h3>
         <p className='text-sm text-[#adb5bd] mb-3'>Brand: {brand}</p>
-        <p className='mb-3'>
+        <p className='mb-3  text-sm'>
           <span className='text-red-600 ml-1'>{name}</span>&nbsp;&nbsp;
           <span className='text-[#868e96]'>{description}</span>
         </p>
         {/* Product Details */}
-        <ul className='mb-3'>
+        <ul className='mb-3 text-md'>
           {productDetailsKey.map((key) => {
             const detailType = key.split('_').join(' ');
             return (
@@ -134,11 +134,11 @@ const SingleProduct = () => {
         </ul>
         {/* Storage */}
         <div className='mb-3'>
-          <p className='mb-2'>Capacity:</p>
+          <p className='mb-2 text-sm text-[#868e96] '>Capacity:</p>
           <div className='flex gap-3'>
             {memory.map((capacity: string, index: number) => (
               <button
-                className={`btn ${
+                className={`btn text-md ${
                   index === pickedStorage ? 'btn-neutral' : 'btn-outline'
                 }`}
                 key={index}
@@ -151,7 +151,9 @@ const SingleProduct = () => {
         </div>
         {/* Colors */}
         <div className='mb-6'>
-          <p className='mb-2'>Color{colors.length > 1 && 's'}:</p>
+          <p className='mb-2 text-sm text-[#868e96]'>
+            Color{colors.length > 1 && 's'}:
+          </p>
           <div className='flex gap-3'>
             {colors.map((color) => {
               return (
@@ -188,7 +190,7 @@ const SingleProduct = () => {
         </div>
         {/* quantity */}
         <div className='flex items-center gap-6 mb-10'>
-          <span>Quantity:</span>
+          <span className='text-sm text-[#868e96] '>Quantity:</span>
           <div className='flex items-center gap-4'>
             <button
               className={`text-black ${quantity < 2 && 'text-[#dee2e6]'}`}
