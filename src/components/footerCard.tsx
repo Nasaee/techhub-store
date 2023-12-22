@@ -25,7 +25,7 @@ const FooterCard: FC<footerCardProps> = ({ icon, header, description }) => {
         <header className='text-base font-bold uppercase tracking-widest'>
           {header}
         </header>
-        <p className='text-[#868e96] tracking-wider'>{description}</p>
+        <p className='text-[#868e96] text-sm tracking-wider'>{description}</p>
       </div>
     </div>
   );

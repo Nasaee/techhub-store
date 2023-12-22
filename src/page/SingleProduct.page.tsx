@@ -10,6 +10,7 @@ import { IoShieldOutline } from 'react-icons/io5';
 import { HiMinus, HiPlus } from 'react-icons/hi2';
 import { selectSingleProduct } from '../store/products/products.selector';
 import { addToCart } from '../store/cart/cartSlice';
+import { ErrorPage } from '.';
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -18,8 +19,7 @@ const SingleProduct = () => {
   const product = useSelector(selectSingleProduct(id as string));
 
   if (!product) {
-    //! TODO return to not found page
-    return null;
+    return <ErrorPage />;
   }
 
   const {
@@ -105,7 +105,7 @@ const SingleProduct = () => {
   });
 
   return (
-    <article className='grid grid-cols-2 gap-10 pt-12 pb-20'>
+    <article className='grid grid-cols-1 lg:grid-cols-2 gap-10 pt-12 pb-20'>
       <div>
         <ImageGallery items={displayImages} />
       </div>
