@@ -11,6 +11,7 @@ import { HiMinus, HiPlus } from 'react-icons/hi2';
 import { selectSingleProduct } from '../store/products/products.selector';
 import { addToCart } from '../store/cart/cartSlice';
 import { ErrorPage } from '.';
+import toast from 'react-hot-toast';
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -52,6 +53,8 @@ const SingleProduct = () => {
       stock,
     };
     dispatch(addToCart(pickOptions));
+
+    toast.success('item added');
   }, [
     price,
     id,
@@ -104,8 +107,6 @@ const SingleProduct = () => {
       thumbnail: image.url,
     };
   });
-
-  console.log(quantity < 2);
 
   return (
     <article className='grid grid-cols-1 lg:grid-cols-2 gap-10 pt-12 pb-20'>
