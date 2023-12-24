@@ -47,7 +47,7 @@ const CartItem = ({ cartItem }: { cartItem: TCartItem }) => {
         style={{ backgroundColor: color }}
       ></div>
       <div
-        className='col-span-2 flex justify-between
+        className='col-span-2 flex justify-between flex-wrap gap-y-8
 '
       >
         {/* quantity */}
@@ -75,12 +75,15 @@ const CartItem = ({ cartItem }: { cartItem: TCartItem }) => {
               className={`${
                 quantityValue >= stock ? 'text-[#dee2e6]' : 'text-black'
               }`}
+              disabled={quantityValue >= stock}
               onClick={(e) => updateQuntity(e, id, color, storage)}
             >
               <HiPlus />
             </button>
           </div>
         </div>
+        {/* total price */}
+        <div>{displayPrice(price * quantityValue)}</div>
         {/* remove item */}
         <button
           className='text-red-500 text-2xl cursor-pointer'
