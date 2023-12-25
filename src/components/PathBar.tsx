@@ -32,7 +32,7 @@ const PathBar = ({ submenu, productName }: PathbarProps) => {
             </span>
           </Link>
         )}
-        {productName ? `&#62; ${productName} ` : null}
+        &#62; {productName ? `${productName}` : null}
       </h3>
     </div>
   );
