@@ -32,7 +32,7 @@ const CartItem = ({ cartItem }: { cartItem: TCartItem }) => {
   };
 
   return (
-    <li className='grid grid-cols-[auto_1fr_auto] md:grid-cols-[auto_1fr_auto_1fr_1fr] items-center justify-start gap-4 border-b py-4'>
+    <li className='grid grid-cols-[auto_1fr_auto] md:grid-cols-[auto_1fr_auto_1fr_1fr] items-center justify-start gap-4 border-b py-4 pr-8'>
       {/* image */}
       <img src={image} alt={name} className='w-32 h-auto' />
 
@@ -81,9 +81,7 @@ const CartItem = ({ cartItem }: { cartItem: TCartItem }) => {
         </div>
 
         {/* total price */}
-        <div className='font-bold tracking-wider'>
-          {displayPrice(price * quantity)}
-        </div>
+        <div className='tracking-wider'>{displayPrice(price * quantity)}</div>
 
         {/* remove item */}
         <button

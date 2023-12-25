@@ -6,3 +6,4 @@ export { default as Checkout } from './Checkout';
 export { default as Filters } from './Filter';
 export { default as ProductsContainer } from './ProductsContainer';
 export { default as CartList } from './CartList';
+export { default as CartTotal } from './CartTotal';
