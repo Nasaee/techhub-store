@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo } from 'react';
 import { HiMinus, HiPlus } from 'react-icons/hi2';
 import displayPrice from '../utils/displayPrice.utils';
 import { TCartItem } from '../utils/type';
