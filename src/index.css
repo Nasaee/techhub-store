@@ -1,29 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&display=swap');
 
-body {
-  font-family: 'Kanit', sans-serif;
-}
-
-.about-header {
-  background-image: url('./assets/about-bg.webp');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-/* remove arrow */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type='number'] {
-  -moz-appearance: textfield;
-  color: black;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -58,5 +34,45 @@ input[type='number'] {
 
   .prev {
     @apply absolute top-1/2 left-12 translate-y-[-50%] grid place-items-center text-base hover:bg-[rgba(189,195,199,0.3)] p-2 rounded-full transition duration-300;
+  }
+}
+
+body {
+  font-family: 'Kanit', sans-serif;
+}
+
+.about-header {
+  background-image: url('./assets/about-bg.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* remove arrow */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+  color: black;
+}
+
+animate-bounce {
+  animation: bounce 8s ease-in infinite;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
   }
 }

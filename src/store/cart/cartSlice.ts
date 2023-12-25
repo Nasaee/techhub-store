@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { TCartItem } from '../../utils/type';
+import toast from 'react-hot-toast';
 
 type TState = TCartItem[];
 
@@ -8,8 +9,6 @@ type TIdentify = {
   color: string;
   storage: string;
 };
-
-export type TUpdateQuantity = TIdentify & { quantity: number };
 
 const initialState: TState = [];
 
@@ -49,8 +48,7 @@ export const cartSlice = createSlice({
           !(item.id === id && item.color === color && item.storage === storage)
       );
     },
-
-    updateQuntinty: (state, action: PayloadAction<TUpdateQuantity>) => {
+    increaseQuantity: (state, action: PayloadAction<TIdentify>) => {
       const { id, color, storage } = action.payload;
       state.forEach((item) => {
         if (
@@ -58,7 +56,30 @@ export const cartSlice = createSlice({
           item.color === color &&
           item.storage === storage
         ) {
-          item.quantity = action.payload.quantity;
+          const newQuantity = item.quantity + 1;
+          if (item.stock < newQuantity) {
+            return toast.error('Out of stock');
+          }
+          item.quantity = newQuantity;
+        }
+      });
+    },
+
+    decreaseQuantity: (state, action: PayloadAction<TIdentify>) => {
+      const { id, color, storage } = action.payload;
+      state.forEach((item, index) => {
+        if (
+          item.id === id &&
+          item.color === color &&
+          item.storage === storage
+        ) {
+          const newQuantity = item.quantity - 1;
+          if (newQuantity < 1) {
+            state.splice(index, 1);
+
+            return toast.success('Item removed');
+          }
+          item.quantity = newQuantity;
         }
       });
     },
@@ -69,7 +90,12 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, clearCart, removeItemFormCart, updateQuntinty } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  clearCart,
+  removeItemFormCart,
+  increaseQuantity,
+  decreaseQuantity,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
