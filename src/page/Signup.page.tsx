@@ -107,7 +107,7 @@ const SignUp = () => {
         <p className='text-center'>
           Already have an account?
           <Link
-            to='/sign-up'
+            to='/sign-in'
             className='ml-2 link link-hover link-primary capitalize'
           >
             login
