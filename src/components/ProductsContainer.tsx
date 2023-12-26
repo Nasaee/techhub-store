@@ -9,6 +9,7 @@ import { sortProducts } from '../store/products/productsSlice';
 import { FaArrowDown } from 'react-icons/fa';
 import { Pagination } from 'flowbite-react';
 import { countPages, getPageResult } from '../utils/pageResult.utils';
+import { scrollToTopSmooth } from '../utils/helper.utils';
 
 const ProductsContainer = () => {
   const dispath = useDispatch();
@@ -86,7 +87,10 @@ const ProductsContainer = () => {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className='flex overflow-x-auto sm:self-center mb-20'>
+        <div
+          className='flex overflow-x-auto sm:self-center mb-20'
+          onClick={scrollToTopSmooth}
+        >
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}

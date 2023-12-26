@@ -22,8 +22,8 @@ const CartTotal = () => {
           </div>
         ))}
 
-        <div className='flex justify-between'>
-          <span className='text-lg font-bold'>Total:</span>
+        <div className='flex justify-between font-bold'>
+          <span className='text-lg'>Total:</span>
           <span>{displayPrice(totalPrice)}</span>
         </div>
 
