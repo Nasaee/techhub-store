@@ -1,10 +1,12 @@
 import { ZodType, z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import storeIcon from '../assets/logo.webp';
+import { Link } from 'react-router-dom';
 
 type FormData = {
   userName: string;
-  email: string;
+  email: string | number;
   password: string;
   confirmPassword: string;
 };
@@ -31,8 +33,15 @@ const SignUp = () => {
     console.log(data);
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit(submitData)}>
+    <section className='h-screen grid place-items-center'>
+      <form
+        className='card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4'
+        onSubmit={handleSubmit(submitData)}
+      >
+        <img src={storeIcon} alt='techhub icon' className='w-20 h-20 mx-auto' />
+
+        <h4 className='text-center text-3xl font-bold'>Register</h4>
+
         {/* user name */}
         <label className='form-control w-full max-w-xs'>
           <div className='label'>
@@ -40,7 +49,6 @@ const SignUp = () => {
           </div>
           <input
             type='text'
-            placeholder='Type here'
             className='input input-bordered w-full max-w-xs'
             {...register('userName')}
           />
@@ -55,7 +63,6 @@ const SignUp = () => {
           </div>
           <input
             type='text'
-            placeholder='Type here'
             className='input input-bordered w-full max-w-xs'
             {...register('email')}
           />
@@ -70,7 +77,6 @@ const SignUp = () => {
           </div>
           <input
             type='password'
-            placeholder='Type here'
             className='input input-bordered w-full max-w-xs'
             {...register('password')}
           />
@@ -85,7 +91,6 @@ const SignUp = () => {
           </div>
           <input
             type='password'
-            placeholder='Type here'
             className='input input-bordered w-full max-w-xs'
             {...register('confirmPassword')}
           />
@@ -98,8 +103,18 @@ const SignUp = () => {
         <button type='submit' className='btn btn-neutral'>
           REGISTER
         </button>
+
+        <p className='text-center'>
+          Already have an account?
+          <Link
+            to='/sign-up'
+            className='ml-2 link link-hover link-primary capitalize'
+          >
+            login
+          </Link>
+        </p>
       </form>
-    </div>
+    </section>
   );
 };
 export default SignUp;

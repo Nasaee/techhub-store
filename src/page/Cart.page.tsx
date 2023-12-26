@@ -11,12 +11,12 @@ const Cart = () => {
   if (cartLength === 0) {
     return (
       <div className='flex flex-col justify-center items-center h-screen'>
-        <RiShoppingCartLine className='text-9xl text-secondary mb-10' />
-        <h1 className='text-4xl font-bold uppercase mb-10 tracking-widest'>
+        <RiShoppingCartLine className='text-7xl md:text-9xl text-secondary mb-10' />
+        <h1 className='text-lg md:text-4xl font-bold uppercase mb-10 tracking-widest'>
           Your cart is empty !
         </h1>
         <button className='animate-bounce'>
-          <Link to='/products' className=' btn btn-primary text-xl'>
+          <Link to='/products' className=' btn btn-primary text-lg md:text-xl'>
             <IoIosArrowBack />
             Continue Shopping
           </Link>

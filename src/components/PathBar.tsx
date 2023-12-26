@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-
+import { IoIosArrowForward } from 'react-icons/io';
 import { routes } from '../utils/routes.utils';
 
 type Submenu = (typeof routes)[keyof typeof routes];
@@ -17,23 +17,28 @@ const PathBar = ({ submenu, productName }: PathbarProps) => {
       className='py-2 px-10 text-md capitalize tracking-wider bg-secondary text-base-100
     '
     >
-      <h3>
+      <div className='flex items-center gap-2'>
         <Link
           to='/'
-          className='pr-2 tracking-wider hover:underline transition-all duration-300'
+          className='tracking-wider hover:underline transition-all duration-300'
         >
           Home
         </Link>
-        &#62;
+        <IoIosArrowForward />
         {submenu && (
-          <Link to={`/${submenu.path}`} className='px-2 tracking-wider '>
+          <Link to={`/${submenu.path}`} className='tracking-wider '>
             <span className='hover:underline transition-all duration-300'>
               {submenu.name}
             </span>
           </Link>
         )}
-        &#62; {productName ? `${productName}` : null}
-      </h3>
+        {productName && (
+          <div className='flex items-center gap-2'>
+            <IoIosArrowForward />
+            <span>{productName}</span>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
