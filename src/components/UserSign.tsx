@@ -7,7 +7,9 @@ const User = () => {
     <div className='dropdown dropdown-end'>
       {isAuthenticated ? (
         <div className='tooltip  tooltip-bottom' data-tip='Sign out'>
-          <button onClick={() => logout()}>
+          <button
+            onClick={() => logout({ returnTo: window.location.origin } as any)}
+          >
             <GoSignOut className='icon text-primary' />
           </button>
         </div>
