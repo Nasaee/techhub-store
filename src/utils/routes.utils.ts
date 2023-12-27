@@ -8,8 +8,6 @@ export type Routes = {
   products: RouteObj;
   aboutUs: RouteObj;
   cart: RouteObj;
-  signIn: RouteObj;
-  signUp: RouteObj;
   checkout: RouteObj;
 };
 
@@ -18,7 +16,5 @@ export const routes: Routes = {
   products: { path: 'products', name: 'Products' },
   aboutUs: { path: 'about-us', name: 'About us' },
   cart: { path: 'cart', name: 'Cart' },
-  signIn: { path: 'sign-in', name: 'Sign In' },
-  signUp: { path: 'sign-up', name: 'Sign Up' },
   checkout: { path: 'checkout', name: 'Checkout' },
 };

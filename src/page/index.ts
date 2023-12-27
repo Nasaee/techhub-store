@@ -5,5 +5,3 @@ export { default as Cart } from './Cart.page';
 export { default as SingleProduct } from './SingleProduct.page';
 export { default as ErrorPage } from './Error.page';
 export { default as PrivateRoute } from './PrivateRoute';
-export { default as SignIn } from './SignIn.page';
-export { default as SignUp } from './Signup.page';

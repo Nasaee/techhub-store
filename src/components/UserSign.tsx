@@ -1,21 +1,23 @@
-import { FaRegUser } from 'react-icons/fa';
+import { useAuth0 } from '@auth0/auth0-react';
+import { GoSignOut, GoSignIn } from 'react-icons/go';
+
 const User = () => {
+  const { isAuthenticated, loginWithPopup, logout } = useAuth0();
   return (
     <div className='dropdown dropdown-end'>
-      <label tabIndex={0} className='flex items-center justify-center'>
-        <FaRegUser className='icon text-primary' />
-      </label>
-      <ul
-        tabIndex={0}
-        className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52'
-      >
-        <li>
-          <a>Item 1</a>
-        </li>
-        <li>
-          <a>Item 2</a>
-        </li>
-      </ul>
+      {isAuthenticated ? (
+        <div className='tooltip  tooltip-bottom' data-tip='Sign out'>
+          <button onClick={() => logout()}>
+            <GoSignOut className='icon text-primary' />
+          </button>
+        </div>
+      ) : (
+        <div className='tooltip tooltip-bottom' data-tip='Sign in'>
+          <button onClick={() => loginWithPopup()}>
+            <GoSignIn className='icon text-primary' />
+          </button>
+        </div>
+      )}
     </div>
   );
 };
