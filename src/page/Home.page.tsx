@@ -11,17 +11,16 @@ const Home = () => {
   const dispatch = useDispatch();
   const isProductsLoading = useSelector(selectIsProductsLoading);
 
-  // use for call api only once at last unmounted ( useEffect call twice in strict mode)
-  const efffectRun = useRef(true);
+  // use for call api only once at app mount ( useEffect call twice in strict mode)
+  const efffectRun = useRef(false);
 
   useEffect(() => {
     if (efffectRun.current === false) {
       dispatch(fetchProductsStart());
+      return () => {
+        efffectRun.current = true;
+      };
     }
-
-    return () => {
-      efffectRun.current = false;
-    };
   }, []);
 
   return (
