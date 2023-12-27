@@ -1,14 +1,22 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import { Routes, routes } from '../utils/routes.utils';
+import { useAuth0 } from '@auth0/auth0-react';
+import { GoSignOut, GoSignIn } from 'react-icons/go';
 
 const Menu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const { user, loginWithPopup, logout } = useAuth0();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const isMenuOpen = e.target.checked;
     setIsMenuOpen(isMenuOpen);
+  };
+
+  const handleAuth = (type: 'login' | 'logout') => {
+    setIsMenuOpen(false);
+    if (type === 'login') loginWithPopup();
+    if (type === 'logout') logout();
   };
 
   return (
@@ -49,11 +57,7 @@ const Menu = () => {
         <ul className='p-2 shadow  z-[1] bg-base-300 rounded-box w-52  absolute left-0 mt-3 py-8 px-5'>
           {Object.keys(routes).map((key) => {
             const route = routes[key as keyof Routes];
-            if (
-              route !== routes.signIn &&
-              route !== routes.signUp &&
-              route !== routes.checkout
-            ) {
+            if (route !== routes.checkout) {
               return (
                 <li
                   key={key}
@@ -70,10 +74,41 @@ const Menu = () => {
               );
             }
           })}
+
+          {user && (
+            <li
+              className='px-3 py-3 bold text-primary hover:bg-primary hover:text-base-300 rounded-md'
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <Link
+                to={routes.checkout.path}
+                className='text-md xl:text-lg uppercase '
+              >
+                {routes.checkout.name}
+              </Link>
+            </li>
+          )}
+          <li className='flex justify-center mt-4'>
+            {user ? (
+              <button
+                className='flex items-center justify-center self-center btn btn-primary  gap-4 text-md'
+                onClick={() => handleAuth('logout')}
+              >
+                <GoSignOut className='text-2xl' />
+                <span>Sign out</span>
+              </button>
+            ) : (
+              <button
+                className='flex items-center justify-center self-center btn btn-primary  gap-4 text-md'
+                onClick={() => handleAuth('login')}
+              >
+                <GoSignIn className='text-2xl' />
+                <span>Sign in</span>
+              </button>
+            )}
+          </li>
         </ul>
       )}
-
-      {/* //TODO  if user then signin else signout */}
     </div>
   );
 };

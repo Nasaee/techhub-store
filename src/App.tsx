@@ -5,15 +5,13 @@ import {
   Products,
   AboutUs,
   Cart,
-  SignIn,
   PrivateRoute,
-  SignUp,
   SingleProduct,
 } from './page';
 import { Checkout, Landing } from './components';
 import { routes } from './utils/routes.utils';
 
-const { home, products, aboutUs, cart, signIn, signUp, checkout } = routes;
+const { home, products, aboutUs, cart, checkout } = routes;
 
 const router = createBrowserRouter([
   {
@@ -45,14 +43,6 @@ const router = createBrowserRouter([
             <Checkout />
           </PrivateRoute>
         ),
-      },
-      {
-        path: signIn.path,
-        element: <SignIn />,
-      },
-      {
-        path: signUp.path,
-        element: <SignUp />,
       },
     ],
   },

@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom';
 import displayPrice from '../utils/displayPrice.utils';
 import { useSelector } from 'react-redux';
 import { selectTotalPrice } from '../store/cart/cart.selector';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const CartTotal = () => {
   const totalPrice = useSelector(selectTotalPrice);
+  const { isAuthenticated, loginWithPopup } = useAuth0();
 
   const expense = [
     { type: 'Subtotal', amount: totalPrice },
@@ -28,12 +30,21 @@ const CartTotal = () => {
         </div>
 
         <button className='block w-full mt-16'>
-          <Link
-            to='/checkout'
-            className='btn btn-primary w-[80%] text-lg uppercase tracking-widest'
-          >
-            Checkout
-          </Link>
+          {isAuthenticated ? (
+            <Link
+              to='/checkout'
+              className='btn btn-primary w-[80%] text-lg uppercase tracking-widest'
+            >
+              Checkout
+            </Link>
+          ) : (
+            <button
+              className='btn btn-secondary w-[80%] text-lg uppercase tracking-widest'
+              onClick={() => loginWithPopup()}
+            >
+              Login to checkout
+            </button>
+          )}
         </button>
       </div>
     </div>

@@ -34,10 +34,10 @@ const CartItem = ({ cartItem }: { cartItem: TCartItem }) => {
   return (
     <li className='grid grid-cols-[auto_1fr_auto] md:grid-cols-[auto_1fr_auto_1fr_1fr] items-center justify-start gap-4 border-b py-4 pr-8'>
       {/* image */}
-      <img src={image} alt={name} className='w-32 h-auto' />
+      <img src={image} alt={name} className='w-16 h-auto rounded-lg' />
 
       {/* name */}
-      <p>
+      <p className='self-start text-[0.85rem] md:text-[1rem]'>
         {name}&nbsp;{storage} ({displayPrice(price)})
       </p>
 
@@ -48,28 +48,21 @@ const CartItem = ({ cartItem }: { cartItem: TCartItem }) => {
       ></div>
       <div
         className='col-span-2 flex justify-between flex-wrap gap-y-8
-'
+  '
       >
         {/* quantity */}
         <div className='flex items-center gap-4'>
-          <span>Quantity:</span>
-          <div className='flex items-center gap-4'>
+          <span className='text-[0.85rem] md:text-[1rem]'>Quantity:</span>
+          <div className='flex items-center gap-2 md:gap-4'>
             <button
               name='decrease'
               onClick={() => handleUpdateQuantity('decrease')}
             >
               <HiMinus />
             </button>
-
-            <input
-              type='number'
-              inputMode='numeric'
-              pattern='[0-9]*'
-              className='w-12 h-10 p-1 text-center'
-              value={quantity}
-              disabled={true}
-              onChange={() => {}}
-            />
+            <div className='flex items-center justify-center w-12 h-10 p-1 text-center  md:text-[1.3rem]'>
+              {quantity}
+            </div>
             <button
               name='increase'
               className={`${quantity >= stock && 'text-[#dee2e6]'}`}
@@ -81,7 +74,9 @@ const CartItem = ({ cartItem }: { cartItem: TCartItem }) => {
         </div>
 
         {/* total price */}
-        <div className='tracking-wider'>{displayPrice(price * quantity)}</div>
+        <div className='flex items-center tracking-wider'>
+          {displayPrice(price * quantity)}
+        </div>
 
         {/* remove item */}
         <button
