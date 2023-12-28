@@ -2,7 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { GoSignOut, GoSignIn } from 'react-icons/go';
 
 const User = () => {
-  const { isAuthenticated, loginWithPopup, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   return (
     <div className='dropdown dropdown-end'>
       {isAuthenticated ? (
@@ -13,7 +13,7 @@ const User = () => {
         </div>
       ) : (
         <div className='tooltip tooltip-bottom' data-tip='Sign in'>
-          <button onClick={() => loginWithPopup()}>
+          <button onClick={() => loginWithRedirect()}>
             <GoSignIn className='icon text-primary' />
           </button>
         </div>

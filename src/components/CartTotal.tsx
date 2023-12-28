@@ -6,7 +6,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 const CartTotal = ({ showButton }: { showButton?: boolean }) => {
   const totalPrice = useSelector(selectTotalPrice);
-  const { isAuthenticated, loginWithPopup } = useAuth0();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   const expense = [
     { type: 'Subtotal', amount: totalPrice },
@@ -41,7 +41,7 @@ const CartTotal = ({ showButton }: { showButton?: boolean }) => {
             ) : (
               <button
                 className='btn btn-secondary w-[80%] text-md md:text-lg uppercase tracking-widest'
-                onClick={() => loginWithPopup()}
+                onClick={() => loginWithRedirect()}
               >
                 Login to checkout
               </button>

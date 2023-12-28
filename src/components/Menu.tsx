@@ -6,7 +6,7 @@ import { GoSignOut, GoSignIn } from 'react-icons/go';
 
 const Menu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const { user, loginWithPopup, logout } = useAuth0();
+  const { user, loginWithRedirect, logout } = useAuth0();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const isMenuOpen = e.target.checked;
@@ -15,8 +15,10 @@ const Menu = () => {
 
   const handleAuth = (type: 'login' | 'logout') => {
     setIsMenuOpen(false);
-    if (type === 'login') loginWithPopup();
-    if (type === 'logout') logout();
+    if (type === 'login') loginWithRedirect();
+    if (type === 'logout') {
+      logout();
+    }
   };
 
   return (
