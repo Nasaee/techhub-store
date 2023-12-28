@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { store, persistor } from './store/store.ts';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Auth0Provider } from '@auth0/auth0-react';
+import { Elements } from '@stripe/react-stripe-js';
 import 'react-image-gallery/styles/css/image-gallery.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -25,7 +26,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     >
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <App />
+          <Elements>
+            <App />
+          </Elements>
         </PersistGate>
       </Provider>
     </Auth0Provider>

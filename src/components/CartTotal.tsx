@@ -8,10 +8,14 @@ const CartTotal = ({ showButton }: { showButton?: boolean }) => {
   const totalPrice = useSelector(selectTotalPrice);
   const { isAuthenticated, loginWithRedirect } = useAuth0();
 
+  const VAT = 7;
+
+  const priceBeforeVat = (totalPrice * (100 - VAT)) / 100;
+
   const expense = [
-    { type: 'Subtotal', amount: totalPrice },
+    { type: 'Subtotal', amount: priceBeforeVat },
     { type: 'Shipping', amount: 0 },
-    { type: 'Tax', amount: 0 },
+    { type: 'Vat', amount: totalPrice - priceBeforeVat },
   ];
 
   return (
@@ -24,8 +28,8 @@ const CartTotal = ({ showButton }: { showButton?: boolean }) => {
           </div>
         ))}
 
-        <div className='flex justify-between font-bold'>
-          <span className='text-lg'>Total:</span>
+        <div className='flex justify-between font-bold md:text-xl'>
+          <span>Total:</span>
           <span>{displayPrice(totalPrice)}</span>
         </div>
 
