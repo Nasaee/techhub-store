@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import { Routes, routes } from '../utils/routes.utils';
 import { useAuth0 } from '@auth0/auth0-react';
 import { GoSignOut, GoSignIn } from 'react-icons/go';
+import { useDispatch } from 'react-redux';
+import { clearCartReduxPersist } from '../store/cart/cartSlice';
 
 const Menu = () => {
+  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const { user, loginWithRedirect, logout } = useAuth0();
 
@@ -18,6 +21,7 @@ const Menu = () => {
     if (type === 'login') loginWithRedirect();
     if (type === 'logout') {
       logout();
+      return dispatch(clearCartReduxPersist());
     }
   };
 

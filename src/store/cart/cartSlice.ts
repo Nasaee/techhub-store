@@ -87,6 +87,10 @@ export const cartSlice = createSlice({
     clearCart: (state) => {
       state.length = 0;
     },
+
+    clearCartReduxPersist() {
+      return initialState;
+    },
   },
 });
 
@@ -96,6 +100,7 @@ export const {
   removeItemFormCart,
   increaseQuantity,
   decreaseQuantity,
+  clearCartReduxPersist,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
