@@ -27,7 +27,7 @@ const Cart = () => {
   return (
     <section className='grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6 py-10'>
       <CartList />
-      <CartTotal />
+      <CartTotal showButton={true} />
     </section>
   );
 };

@@ -13,6 +13,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <Auth0Provider
       domain='dev-cwqld7aacet6gyjn.us.auth0.com'
       clientId='vf5d6roMImYYlGDHqkHN0cVtXoIc6T7j'
+      // use in production
+      // authorizationParams={{
+      //   redirect_uri: 'https://tecth-hub.netlify.app/',
+      // }}
+
+      // use in development
       authorizationParams={{
         redirect_uri: window.location.origin,
       }}

@@ -5,7 +5,7 @@ const PrivateRoute = ({ children }: { children: JSX.Element }) => {
   const { user } = useAuth0();
 
   if (!user) {
-    return <Navigate to='/sign-in' />;
+    return <Navigate to='/' />;
   }
   return children;
 };
