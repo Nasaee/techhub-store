@@ -33,6 +33,7 @@
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.2.3",
     "reselect": "^4.1.8",
+    "stripe": "^14.10.0",
     "styled-components": "^6.1.6",
     "zod": "^3.22.4"
   },

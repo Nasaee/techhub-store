@@ -1,6 +1,11 @@
 import { Modal } from 'flowbite-react';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import styled from 'styled-components';
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { cardStyle } from '../utils/helper.utils';
+import axios from 'axios';
+import { useAuth0 } from '@auth0/auth0-react';
+import toast from 'react-hot-toast';
 
 type TStripeCheckoutForm = {
   openModal: boolean;
@@ -10,18 +15,63 @@ const StripeCheckoutForm = ({
   openModal,
   setOpenModal,
 }: TStripeCheckoutForm) => {
+  const { user } = useAuth0();
+
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
+
+  const paymentHandler = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!stripe || !elements) return;
+
+    const { data } = await axios.post(
+      '/.netlify/functions/create-payment-intent',
+      { amount: 2000 }, // body
+      { headers: { 'Content-Type': 'application/json' } }
+    );
+    const clientSecret = data.clientSecret;
+
+    const paymentResult = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement),
+        billing_details: {
+          name: user?.name,
+        },
+      },
+    });
+
+    if (paymentResult.error) {
+      toast.error(paymentResult.error.message as string);
+    } else {
+      if (paymentResult.paymentIntent.status === 'processing') {
+        setIsPaymentProcessing(true);
+      }
+      if (paymentResult.paymentIntent.status === 'succeeded') {
+        setIsPaymentProcessing(false);
+        toast.success('Payment Successful');
+      }
+    }
+  };
+
   return (
     <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
-      <Modal.Header>Terms of Service</Modal.Header>
+      <Modal.Header>Credit Card Payment</Modal.Header>
       <Modal.Body>
-        <Wrapper>stripe payment</Wrapper>
+        {/* //TODO: pretty up */}
+        <FormContainer onSubmit={paymentHandler}>
+          <CardElement options={cardStyle} />
+          {/* //TODO: if isPaymentProcessing is true, show loading and disable  */}
+          <button type='submit'>pay</button>
+        </FormContainer>
       </Modal.Body>
     </Modal>
   );
 };
 export default StripeCheckoutForm;
 
-const Wrapper = styled.div`
+const FormContainer = styled.form`
   form {
     width: 30vw;
     min-width: 500px;
