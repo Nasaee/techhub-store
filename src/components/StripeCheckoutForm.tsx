@@ -2,10 +2,20 @@ import { Modal } from 'flowbite-react';
 import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import styled from 'styled-components';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { cardStyle } from '../utils/helper.utils';
+import {
+  TEST_CREDIT_CARD_NUMBER,
+  amountToPay,
+  cardStyle,
+  saveToClipboard,
+} from '../utils/helper.utils';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 import toast from 'react-hot-toast';
+import displayPrice from '../utils/displayPrice.utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectTotalPrice } from '../store/cart/cart.selector';
+import { FaRegFileAlt } from 'react-icons/fa';
+import { clearCart } from '../store/cart/cartSlice';
 
 type TStripeCheckoutForm = {
   openModal: boolean;
@@ -15,20 +25,25 @@ const StripeCheckoutForm = ({
   openModal,
   setOpenModal,
 }: TStripeCheckoutForm) => {
+  const dispatch = useDispatch();
   const { user } = useAuth0();
+  const amount = useSelector(selectTotalPrice);
 
+  // Stripe stuff
   const stripe = useStripe();
   const elements = useElements();
-
-  const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
+  const [succeeded, setSucceeded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const paymentHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!stripe || !elements) return;
 
+    setIsLoading(true);
+
     const { data } = await axios.post(
       '/.netlify/functions/create-payment-intent',
-      { amount: 2000 }, // body
+      { amount: amountToPay(amount) }, // body
       { headers: { 'Content-Type': 'application/json' } }
     );
     const clientSecret = data.clientSecret;
@@ -45,25 +60,75 @@ const StripeCheckoutForm = ({
     if (paymentResult.error) {
       toast.error(paymentResult.error.message as string);
     } else {
-      if (paymentResult.paymentIntent.status === 'processing') {
-        setIsPaymentProcessing(true);
-      }
       if (paymentResult.paymentIntent.status === 'succeeded') {
-        setIsPaymentProcessing(false);
+        setIsLoading(false);
+        setSucceeded(true);
         toast.success('Payment Successful');
       }
     }
   };
 
+  const closeModal = () => {
+    setOpenModal(false);
+    dispatch(clearCart());
+  };
+
   return (
-    <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
+    <Modal dismissible show={openModal} onClose={closeModal}>
       <Modal.Header>Credit Card Payment</Modal.Header>
       <Modal.Body>
         {/* //TODO: pretty up */}
         <FormContainer onSubmit={paymentHandler}>
-          <CardElement options={cardStyle} />
-          {/* //TODO: if isPaymentProcessing is true, show loading and disable  */}
-          <button type='submit'>pay</button>
+          <article className='tracking-wide mb-10'>
+            <h4 className='font-bold capitalize mb-6 text-xl text-[#495057]'>
+              Hello, {user?.name}
+            </h4>
+            <p className='text-[#868e96] text-lg'>
+              Your total is&nbsp;
+              <span className='text-primary mb-1'>{displayPrice(amount)}</span>
+            </p>
+          </article>
+
+          <div className='text-[#868e96] text-lg mb-8 mr-auto flex items-end'>
+            <p>Test Card Number:</p>
+            <p className='bg-[#ced4da]  py-1 px-3 rounded-md ml-2 text-[1rem] flex items-center gap-4'>
+              <span>{TEST_CREDIT_CARD_NUMBER}</span>
+              <span
+                className='inline-block fit-conten hover:text-primary cursor-pointer'
+                onClick={() => saveToClipboard(TEST_CREDIT_CARD_NUMBER)}
+              >
+                <FaRegFileAlt className='w-5 h-5' />
+              </span>
+            </p>
+          </div>
+
+          <CardElement id='card-element' options={cardStyle} />
+
+          {/* button */}
+          <button
+            disabled={isLoading || succeeded || !stripe || !elements}
+            id='submit'
+          >
+            <span id='button-text'>
+              {isLoading ? (
+                <div className='spinner' id='spinner'></div>
+              ) : (
+                'Pay now'
+              )}
+            </span>
+          </button>
+
+          {/* Show a success message upon completion */}
+          <p
+            className={
+              succeeded ? 'result-message text-center' : 'result-message hidden'
+            }
+          >
+            Payment succeeded, see the result in your
+            <a href={`https://dashboard.stripe.com/test/payments`}>
+              Stripe dashboard.
+            </a>
+          </p>
         </FormContainer>
       </Modal.Body>
     </Modal>
@@ -81,6 +146,28 @@ const FormContainer = styled.form`
       0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
     border-radius: 7px;
     padding: 40px;
+  }
+
+  #card-element {
+    border-radius: 4px 4px 0 0;
+    padding: 12px;
+    border: 1px solid rgba(50, 50, 93, 0.1);
+    max-height: 44px;
+    width: 100%;
+    background: white;
+    box-sizing: border-box;
+  }
+
+  .result-message {
+    line-height: 22px;
+    font-size: 16px;
+    margin-top: 1rem;
+  }
+  .result-message a {
+    color: rgb(89, 111, 214);
+    font-weight: 600;
+    text-decoration: none;
+    padding-inline: 4px;
   }
 
   #payment-message {

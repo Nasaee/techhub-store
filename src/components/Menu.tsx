@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import { Routes, routes } from '../utils/routes.utils';
 import { useAuth0 } from '@auth0/auth0-react';
 import { GoSignOut, GoSignIn } from 'react-icons/go';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { clearCartReduxPersist } from '../store/cart/cartSlice';
+import { selectTotalPrice } from '../store/cart/cart.selector';
 
 const Menu = () => {
   const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const { user, loginWithRedirect, logout } = useAuth0();
+  const totalPrice = useSelector(selectTotalPrice);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const isMenuOpen = e.target.checked;
@@ -81,7 +83,7 @@ const Menu = () => {
             }
           })}
 
-          {user && (
+          {user && totalPrice > 0 && (
             <li
               className='px-3 py-3 bold text-primary hover:bg-primary hover:text-base-300 rounded-md'
               onClick={() => setIsMenuOpen(false)}
