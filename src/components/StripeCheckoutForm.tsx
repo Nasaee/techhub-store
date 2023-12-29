@@ -1,6 +1,7 @@
 import { Modal } from 'flowbite-react';
 import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import styled from 'styled-components';
+import { StripeElement } from '@stripe/stripe-js';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import {
   TEST_CREDIT_CARD_NUMBER,
@@ -21,6 +22,11 @@ type TStripeCheckoutForm = {
   openModal: boolean;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
 };
+
+const ifValidCardElement = (
+  card: StripeElement | null
+): card is StripeElement => card !== null;
+
 const StripeCheckoutForm = ({
   openModal,
   setOpenModal,
@@ -50,7 +56,7 @@ const StripeCheckoutForm = ({
 
     const cardDetails = elements.getElement(CardElement);
 
-    if (cardDetails === null) return; // type guard
+    if (!ifValidCardElement(cardDetails)) return; // type guard
 
     const paymentResult = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
