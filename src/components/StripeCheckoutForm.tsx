@@ -48,9 +48,13 @@ const StripeCheckoutForm = ({
     );
     const clientSecret = data.clientSecret;
 
+    const cardDetails = elements.getElement(CardElement);
+
+    if (cardDetails === null) return; // type guard
+
     const paymentResult = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
-        card: elements.getElement(CardElement),
+        card: cardDetails,
         billing_details: {
           name: user?.name,
         },
