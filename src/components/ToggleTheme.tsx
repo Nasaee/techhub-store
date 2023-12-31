@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { toggleTheme } from '../store/user/userSlice';
+import { toggleTheme } from '../store/theme/themeSlice';
 import { ChangeEvent } from 'react';
 
 const ToggleTheme = () => {
