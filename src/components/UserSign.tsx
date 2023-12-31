@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 const User = () => {
   const dispatch = useDispatch();
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithPopup, logout } = useAuth0();
   const handleLogout = () => {
     logout();
     return dispatch(clearCartReduxPersist());
@@ -20,7 +20,7 @@ const User = () => {
         </div>
       ) : (
         <div className='tooltip tooltip-bottom' data-tip='Sign in'>
-          <button onClick={() => loginWithRedirect()}>
+          <button onClick={() => loginWithPopup()}>
             <GoSignIn className='icon text-primary' />
           </button>
         </div>

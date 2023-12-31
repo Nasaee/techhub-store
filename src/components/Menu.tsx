@@ -10,7 +10,7 @@ import { selectTotalPrice } from '../store/cart/cart.selector';
 const Menu = () => {
   const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const { user, loginWithRedirect, logout } = useAuth0();
+  const { user, loginWithPopup, logout } = useAuth0();
   const totalPrice = useSelector(selectTotalPrice);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -20,7 +20,7 @@ const Menu = () => {
 
   const handleAuth = (type: 'login' | 'logout') => {
     setIsMenuOpen(false);
-    if (type === 'login') loginWithRedirect();
+    if (type === 'login') loginWithPopup();
     if (type === 'logout') {
       logout();
       return dispatch(clearCartReduxPersist());
