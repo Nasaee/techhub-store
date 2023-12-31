@@ -79,8 +79,12 @@ const StripeCheckoutForm = ({
   };
 
   const closeModal = () => {
-    setOpenModal(false);
-    dispatch(clearCart());
+    if (succeeded) {
+      setOpenModal(false);
+      dispatch(clearCart());
+    } else {
+      setOpenModal(false);
+    }
   };
 
   return (
