@@ -40,8 +40,6 @@ const Checkout = () => {
                 type='text'
                 name='name'
                 required
-                // TODO: remove value letter
-                value='test'
                 className='input input-bordered w-full max-w-xs'
                 onChange={handleInputChange}
               />
@@ -54,8 +52,6 @@ const Checkout = () => {
                 name='address'
                 className='textarea textarea-bordered h-24'
                 required
-                // TODO: remove value letter
-                value='test'
                 onChange={handleInputChange}
               ></textarea>
             </label>

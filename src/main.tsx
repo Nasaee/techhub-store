@@ -13,17 +13,16 @@ import { stripePromise } from './utils/stripe/stripe.utils.ts';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Auth0Provider
-      domain='dev-cwqld7aacet6gyjn.us.auth0.com'
-      clientId='vf5d6roMImYYlGDHqkHN0cVtXoIc6T7j'
+      domain={import.meta.env.VITE_AUTH0_DOMAIN}
+      clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
       // use in production
-      // authorizationParams={{
-      //   redirect_uri: 'https://tecth-hub.netlify.app/',
-      // }}
-
-      // use in development
       authorizationParams={{
-        redirect_uri: window.location.origin,
+        redirect_uri: 'https://tecth-hub.netlify.app/',
       }}
+      // use in development
+      // authorizationParams={{
+      //   redirect_uri: window.location.origin,
+      // }}
     >
       <Provider store={store}>
         <PersistGate persistor={persistor}>
