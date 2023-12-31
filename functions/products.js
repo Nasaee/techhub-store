@@ -1,11 +1,13 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 const Airtable = require('airtable-node');
 
 const airtable = new Airtable({
-  apiKey:
-    'pat17kVlBjoo5Yu4F.8865876a8f45845581902e7acf2a02aaf71670cc70ddc1d5b96e0735adeef2eb',
+  apiKey: process.env.VITE_AIRTABLE_API_KEY,
 })
-  .base('appaHFfiPfsEBkn82')
-  .table('products');
+  .base(process.env.VITE_AIRTABLE_BASE_ID)
+  .table(process.env.VITE_AIRTABLE_TABLE_NAME);
 
 exports.handler = async function () {
   try {
