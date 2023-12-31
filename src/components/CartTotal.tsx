@@ -6,7 +6,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 const CartTotal = ({ showButton }: { showButton?: boolean }) => {
   const totalPrice = useSelector(selectTotalPrice);
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, loginWithPopup } = useAuth0();
 
   const VAT = 7;
 
