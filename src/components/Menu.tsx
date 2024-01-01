@@ -22,7 +22,7 @@ const Menu = () => {
     setIsMenuOpen(false);
     if (type === 'login') loginWithRedirect();
     if (type === 'logout') {
-      logout();
+      logout({ logoutParams: { returnTo: window.location.origin } });
       return dispatch(clearCartReduxPersist());
     }
   };
