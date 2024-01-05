@@ -76,7 +76,7 @@ const Card: FC<CardProps> = ({ product, cardStyle }) => {
       <Link
         to={`/products/${id}`}
         key={id}
-        className='card card-side grid grid-cols-2 h-full overflow-hidden border transition duration-300  max-w-[900px]'
+        className='card card-side grid grid-cols-1 md:grid-cols-2 h-full overflow-hidden border transition duration-300  max-w-[900px]'
       >
         <figure className='relative border-r'>
           <img src={images[0].url} alt={name} className='h-full object-cover' />

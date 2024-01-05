@@ -5,7 +5,7 @@
 <p align="center">
   <h1 align="center">techHub store</h1>
 </p>
-<h4 align="center">
+<h4 style="text-align: center; font-size: 30px; text-decoration: underline"> 
     <a href="https://tecth-hub.netlify.app/">Demo</a>
 </h4>
 

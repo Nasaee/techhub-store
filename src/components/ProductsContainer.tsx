@@ -53,7 +53,7 @@ const ProductsContainer = () => {
 
           <button
             onClick={() => setLayout('list')}
-            className={setActiveStyles('list')}
+            className={`${setActiveStyles('list')} hidden md:flex`}
           >
             <BsList />
           </button>
